@@ -8,6 +8,6 @@ public abstract class BaseCardEffect : ScriptableObject
     [SerializeField] [TextArea] protected string m_Description = default;
     public string Description { get => m_Description; }
 
-    public abstract void OnPlay(GameObject target);
+    public abstract void OnPlay(List<Vector3> castPositions);
 
 }

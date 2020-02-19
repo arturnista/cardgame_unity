@@ -31,10 +31,12 @@ public class EnemyHealth : EntityHealth
             OnDeath(gameObject);
         }
 
-        Vector3 originalPosition = transform.position;
+        SpriteRenderer sprite = GetComponentInChildren<SpriteRenderer>();
+        
+        Vector3 originalPosition = sprite.transform.position;
         for (int i = 0; i < 5; i++)
         {
-            transform.position = originalPosition + new Vector3(
+            sprite.transform.position = originalPosition + new Vector3(
                 Random.Range(-.3f, .3f),
                 Random.Range(-.3f, .3f)
             );
@@ -46,7 +48,7 @@ public class EnemyHealth : EntityHealth
 
     void OnMouseDown()
     {
-        GameObject.FindObjectOfType<GameController>().SelectEnemy(gameObject);
+        // GameObject.FindObjectOfType<GameController>().SelectEnemy(gameObject);
     }
     
 }

@@ -15,8 +15,14 @@ public class Card : ScriptableObject
     [SerializeField] protected int m_ManaCost = default;
     public int ManaCost { get => m_ManaCost; protected set => m_ManaCost = value; }
 
-    [SerializeField] protected bool m_RequiresTarget = default;
-    public bool RequiresTarget { get => m_RequiresTarget; protected set => m_RequiresTarget = value; }
+    [SerializeField] protected int m_Range = default;
+    public int Range { get => m_Range; protected set => m_Range = value; }
+
+    [SerializeField] protected BaseCardArea m_UseArea = default;
+    public BaseCardArea UseArea { get => m_UseArea; protected set => m_UseArea = value; }
+
+    [SerializeField] protected int m_AreaValue = default;
+    public int AreaValue { get => m_AreaValue; protected set => m_AreaValue = value; }
 
     [SerializeField] protected List<BaseCardEffect> m_OnPlayEffects = default;
     public List<BaseCardEffect> OnPlayEffects { get => m_OnPlayEffects; protected set => m_OnPlayEffects = value; }
@@ -35,12 +41,18 @@ public class Card : ScriptableObject
         }
     }
     
-    public void Play(GameObject target)
+    public void Play(Vector3 point)
     {
+        List<Vector3> castPosition = GetAreaOfEffect(point);
         foreach (BaseCardEffect effect in OnPlayEffects)
         {
-            effect.OnPlay(target);
+            effect.OnPlay(castPosition);
         }
+    }
+
+    public List<Vector3> GetAreaOfEffect(Vector3 castPosition)
+    {
+        return m_UseArea.GetAreaOfEffect(castPosition, m_AreaValue);
     }
 
 }

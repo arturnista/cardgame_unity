@@ -15,6 +15,8 @@ MonoBehaviour:
   m_Title: Bear paw
   m_Icon: {fileID: 21300000, guid: d199c7eb4d12258468fc51227d115d56, type: 3}
   m_ManaCost: 1
-  m_RequiresTarget: 0
+  m_Range: 0
+  m_UseArea: {fileID: 11400000, guid: a0383ff32501d2d48b2cc8dc22dbf7b0, type: 2}
+  m_AreaValue: 0
   m_OnPlayEffects:
   - {fileID: 11400000, guid: 2d6277b488c8e85488a5b9e35293bc79, type: 2}

@@ -17,25 +17,15 @@ public class UICardList : MonoBehaviour
     [SerializeField] private Canvas _emptyContentCanvas;
 
     private KeyCode _backHotkey;
+    private Canvas _canvas;
+    private GraphicRaycaster _graphicRaycaster;
 
     void Start()
     {
         Main = this;
-        gameObject.SetActive(false);
-    }
-
-    void OnEnable()
-    {
-        _backButton.onClick.AddListener(HandleBack);
-    }
-
-    void OnDisable()
-    {
-        _backButton.onClick.RemoveListener(HandleBack);
-        foreach (Transform child in _contentCanvas.transform)
-        {
-            Destroy(child.gameObject);
-        }
+        _canvas = GetComponent<Canvas>();
+        _graphicRaycaster = GetComponent<GraphicRaycaster>();
+        Hide();
     }
 
     void Update()
@@ -48,14 +38,16 @@ public class UICardList : MonoBehaviour
 
     void HandleBack()
     {
-        gameObject.SetActive(false);
+        Hide();
     }
 
     public void Show(string title, List<Card> cards, KeyCode backHotkey)
     {
         _backHotkey = backHotkey;
         _titleText.text = title;
-        gameObject.SetActive(true);
+        
+        Display();
+
         if (cards.Count > 0) 
         {
             _emptyContentCanvas.gameObject.SetActive(false);
@@ -69,6 +61,26 @@ public class UICardList : MonoBehaviour
         else
         {
             _emptyContentCanvas.gameObject.SetActive(true);
+        }
+    }
+
+    void Display()
+    {
+        _canvas.enabled = true;
+        _graphicRaycaster.enabled = true;
+
+        _backButton.onClick.AddListener(HandleBack);
+    }
+
+    void Hide()
+    {
+        _canvas.enabled = false;
+        _graphicRaycaster.enabled = false;
+
+        _backButton.onClick.RemoveListener(HandleBack);
+        foreach (Transform child in _contentCanvas.transform)
+        {
+            Destroy(child.gameObject);
         }
     }
 

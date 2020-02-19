@@ -8,7 +8,7 @@ public class AddArmorEffect : BaseCardEffect
 
     [SerializeField] private int _armor = 5;
 
-    public override void OnPlay(GameObject target)
+    public override void OnPlay(List<Vector3> castPositions)
     {
         PlayerController playerController = GameObject.FindObjectOfType<PlayerController>();
         playerController.Armor += _armor;

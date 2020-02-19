@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5226775189945529962}
   - component: {fileID: 4024111567298348990}
   - component: {fileID: 6390928131180030556}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: IntentText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 4022461600643476843}
   - component: {fileID: 3173413715099556839}
   - component: {fileID: 9192077053828071500}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: IntentIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 8914714072046091872}
   - component: {fileID: 8658504053163955796}
   - component: {fileID: 3225187285953018847}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: ModifiersCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 3248424311371584430}
   - component: {fileID: 5801137069733296409}
   - component: {fileID: 6238703001089567884}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HealthBarValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,7 +410,7 @@ GameObject:
   - component: {fileID: 8338190966133343855}
   - component: {fileID: 271633834053490929}
   - component: {fileID: 8770907973670806082}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: ShieldCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -487,7 +487,7 @@ GameObject:
   - component: {fileID: 7376487848838736351}
   - component: {fileID: 2988399310276000371}
   - component: {fileID: 8803896849464474945}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -587,7 +587,7 @@ GameObject:
   - component: {fileID: 1685037276600452285}
   - component: {fileID: 6945682726011866241}
   - component: {fileID: 3622133887773275981}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HealthBarCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -685,7 +685,7 @@ GameObject:
   - component: {fileID: 7338028663649096302}
   - component: {fileID: 2453291314554253945}
   - component: {fileID: 2035705040907899958}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: IntentCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -762,7 +762,7 @@ GameObject:
   - component: {fileID: 2014461803891431894}
   - component: {fileID: 822253344727405125}
   - component: {fileID: 4783215976245821477}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: ShieldIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -834,7 +834,7 @@ GameObject:
   - component: {fileID: 8747812227607826886}
   - component: {fileID: 381476476383231259}
   - component: {fileID: 4762359086143478270}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HealthText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -988,7 +988,7 @@ GameObject:
   m_Component:
   - component: {fileID: 544541497723461820}
   - component: {fileID: 8142926362299943278}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1053,7 +1053,7 @@ GameObject:
   - component: {fileID: 2537465852971546368}
   - component: {fileID: 8685808982634269053}
   - component: {fileID: 8111733277275277981}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Goblin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1175,7 +1175,7 @@ GameObject:
   - component: {fileID: 5290765572861522841}
   - component: {fileID: 999943672326664972}
   - component: {fileID: 8481762280165915343}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: ShieldText
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -7,6 +7,7 @@ public class EnemiesController : MonoBehaviour
     
     [SerializeField] private Encounter _encounter = default;
     [SerializeField] private List<Transform> _spawnPositions = default;
+    [SerializeField] private LayerMask _enemyLayerMask = default;
     
     private GameController _gameController;
 
@@ -17,6 +18,7 @@ public class EnemiesController : MonoBehaviour
 
     void Awake()
     {
+        DI.Set<EnemiesController>(this);
         _gameController = GameObject.FindObjectOfType<GameController>();
     }
 
@@ -67,6 +69,23 @@ public class EnemiesController : MonoBehaviour
             enemy.GetComponent<EntityModifiers>().EndTurn();
             enemy.GetComponent<UIEnemy>().UpdateUI();
         }
+    }
+
+    public List<GameObject> GetEnemiesAtPositions(List<Vector3> positions)
+    {
+        List<GameObject> result = new List<GameObject>();
+        Vector2 overlapSize = Vector2.one * .9f;
+        foreach (var position in positions)
+        {
+            Collider2D collision = Physics2D.OverlapBox(position, overlapSize, 0f, _enemyLayerMask);
+            Debug.Log(collision);
+            if (collision != null)
+            {
+                result.Add(collision.gameObject);
+            }
+        }
+
+        return result;
     }
     
 }

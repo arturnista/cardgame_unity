@@ -70,20 +70,9 @@ public class PlayerController : MonoBehaviour, IHealth
     {
         UICardList.Main.Show("Discard pile", m_Discard, KeyCode.D);
     }
-    
-    public void PlayCard(Card card)
-    {
-        PlayCard(card, null);
-    }
 
-    public void PlayCard(Card card, GameObject target)
+    public void PlayCard(Card card, Vector3 point)
     {
-        if (card.RequiresTarget && target == null)
-        {
-            DebugText.ShowText("CARD REQUIRES TARGET");
-            return;
-        }
-
         if (card.ManaCost > m_ManaAmount)
         {
             DebugText.ShowText("NOT ENOUGH MANA");
@@ -92,7 +81,7 @@ public class PlayerController : MonoBehaviour, IHealth
         
         m_ManaAmount -= card.ManaCost;
 
-        card.Play(target);
+        card.Play(point);
 
         m_Hand.Remove(card);
         m_Discard.Add(card);

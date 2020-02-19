@@ -8,7 +8,7 @@ public class DealDamageAllEnemiesEffect : BaseCardEffect
 
     [SerializeField] private int _damage = 5;
 
-    public override void OnPlay(GameObject target)
+    public override void OnPlay(List<Vector3> castPositions)
     {
         EnemiesController enemiesController = GameObject.FindObjectOfType<EnemiesController>();
         PlayerController playerController = GameObject.FindObjectOfType<PlayerController>();

@@ -50,3 +50,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 256

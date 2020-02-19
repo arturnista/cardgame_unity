@@ -11,10 +11,12 @@ public class GameController : MonoBehaviour
     private PlayerController _playerController;
     private EnemiesController _enemiesController;
 
-    private Card _selectedCard;
+    private Card m_SelectedCard;
+    public Card SelectedCard { get => m_SelectedCard; }
 
     void Awake()
     {
+        DI.Set<GameController>(this);
         _playerController = GameObject.FindObjectOfType<PlayerController>();
         _enemiesController = GameObject.FindObjectOfType<EnemiesController>();
     }
@@ -67,19 +69,15 @@ public class GameController : MonoBehaviour
 
     public void SelectCard(Card card)
     {
-        if (card.RequiresTarget)
-        {
-            _selectedCard = card;
-        }
-        else
-        {
-            _playerController.PlayCard(card);
-        }
+        m_SelectedCard = card;
     }
 
-    public void SelectEnemy(GameObject enemy)
+    public void SelectPoint(Vector3 point)
     {
-        _playerController.PlayCard(_selectedCard, enemy);
+        if (m_SelectedCard != null)
+        {
+            _playerController.PlayCard(m_SelectedCard, point);
+        }
     }
 
     public void DrawCards()

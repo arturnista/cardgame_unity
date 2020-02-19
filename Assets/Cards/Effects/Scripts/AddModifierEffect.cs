@@ -10,7 +10,7 @@ public class AddModifierEffect : BaseCardEffect
     [SerializeField] private int _amount = 1;
     [SerializeField] private bool _castOnPlayer;
 
-    public override void OnPlay(GameObject target)
+    public override void OnPlay(List<Vector3> castPositions)
     {
         if (_castOnPlayer)
         {
@@ -19,7 +19,13 @@ public class AddModifierEffect : BaseCardEffect
         }
         else
         {
-            target.GetComponent<EntityModifiers>().AddModifier(_modifier, _amount);
+            EnemiesController enemiesController = DI.Get<EnemiesController>();
+
+            foreach (var target in enemiesController.GetEnemiesAtPositions(castPositions))
+            {
+                target.GetComponent<EntityModifiers>().AddModifier(_modifier, _amount);
+            }
+            
         }
     }
 
