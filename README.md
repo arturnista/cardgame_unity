@@ -37,12 +37,16 @@ A descrição da carta é formada pela concatenação das descrições dos efeit
 Entidades contemplam Inimigos e o Player.
 
 ### Vida
-Todas as entidades que tem vida (todas?) extendem uma classe da IHealth.
+Todas as entidades que tem vida (todas?) extendem uma classe da **IHealth**.
 
 ### Modifiers
-Hoje, podem ser adicionados nerfs e buffs usando os Modifiers, para uma unidade ter modifiers, um de seus componentes deve extender do IModifiersHolder
+Hoje, podem ser adicionados nerfs e buffs usando os Modifiers, para uma unidade ter modifiers, um de seus componentes deve extender do **IModifiersHolder**
 
 ## Dano
-O dano é calculado pelo DamageCalculator. Ele leva em conta o dano (número), modifiers do damager, vida do target e modifiers do target.
+O dano é calculado pelo **DamageCalculator**. Ele leva em conta o dano (número), modifiers do damager, vida do target e modifiers do target.
 Caso coloquemos algo a mais (equipes?), mudamos somente essa classe.
  
+## Encontro
+Quem gerencia os inimigos do encontro é o **EnemiesController**.
+Hoje, ele recebe um parâmetro de **Encounter** (ScriptableObject). Essa classe guarda os dados do encontro. Hoje, somente possui o Nome do encontro (interno) e os inimigos do encontro.
+**@WIP** Quando todos os inimigos são mortos, o **EnemiesController** comunica o **GameController** do final da batalha.
