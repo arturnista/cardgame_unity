@@ -22,16 +22,14 @@ Temos que trocar para ele ser uma entidade como os outros inimigos.
 
 ## Sistema de cartas
 
-Quem faz o controle de turno das cartas (sacar/jogar/descartar) é o **PlayerController**.
-Todas as cartas são **Card** (ScriptableObject).
-Ela possui algumas coisas referentes a carta, como nome, custo, icone, tipo, e o mais importante: Efeitos
-Os efeitos são as coisas que as cartas fazem.
-Cada efeito é um **BaseCardEffect** (ScriptableObject) diferente. Hoje, as cartas só fazem ações no *OnPlay*, mas é bem tranquilo de adicionar ações em coisas coisas (OnDraw, OnDiscart).
-Os efeitos são, por exemplo: Dar dano. Dar armor. Adicionar modifier. Dar dano em área, etc.
+Quem faz o controle de turno das cartas (sacar/jogar/descartar) é o **PlayerController**.  
+Todas as cartas são **Card** (ScriptableObject).  
+Ela possui algumas coisas referentes a carta, como nome, custo, icone, tipo, e o mais importante: Efeitos.  
+Os efeitos são as coisas que as cartas fazem.  
+Cada efeito é um **BaseCardEffect** (ScriptableObject) diferente. Hoje, as cartas só fazem ações no *OnPlay*, mas é bem tranquilo de adicionar ações em coisas coisas (OnDraw, OnDiscart).  
+Os efeitos são, por exemplo: Dar dano. Dar armor. Adicionar modifier. Dar dano em área, etc.    
 
-_Para o Grid System: O que teremos que modificar são esses efeitos_
-
-A descrição da carta é formada pela concatenação das descrições dos efeitos juntos.
+A descrição da carta é formada pela concatenação das descrições dos efeitos juntos.  
 
 ## Entidades
 Entidades contemplam Inimigos e o Player.
@@ -47,6 +45,6 @@ O dano é calculado pelo **DamageCalculator**. Ele leva em conta o dano (número
 Caso coloquemos algo a mais (equipes?), mudamos somente essa classe.
  
 ## Encontro
-Quem gerencia os inimigos do encontro é o **EnemiesController**.
-Hoje, ele recebe um parâmetro de **Encounter** (ScriptableObject). Essa classe guarda os dados do encontro. Hoje, somente possui o Nome do encontro (interno) e os inimigos do encontro.
+Quem gerencia os inimigos do encontro é o **EnemiesController**.  
+Hoje, ele recebe um parâmetro de **Encounter** (ScriptableObject). Essa classe guarda os dados do encontro. Hoje, somente possui o Nome do encontro (interno) e os inimigos do encontro.  
 **@WIP** Quando todos os inimigos são mortos, o **EnemiesController** comunica o **GameController** do final da batalha.
