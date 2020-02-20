@@ -39,6 +39,13 @@ public class GameController : MonoBehaviour
         {
             EndPlayerTurn();
         }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && m_SelectedCard != null)
+        {
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            MapController mapController = DI.Get<MapController>();
+            SelectPoint(mapController.WorldToCell(mousePosition));
+        }
     }
 
     void StartPlayerTurn()
@@ -69,6 +76,11 @@ public class GameController : MonoBehaviour
 
     public void SelectCard(Card card)
     {
+        if (card.ManaCost > _playerController.ManaAmount)
+        {
+            DebugText.ShowText("NOT ENOUGH MANA");
+            return;
+        }
         m_SelectedCard = card;
     }
 
@@ -77,6 +89,7 @@ public class GameController : MonoBehaviour
         if (m_SelectedCard != null)
         {
             _playerController.PlayCard(m_SelectedCard, point);
+            m_SelectedCard = null;
         }
     }
 
@@ -92,6 +105,24 @@ public class GameController : MonoBehaviour
             UICardView ui = Instantiate(_cardTemplate,  _cardParent.transform).GetComponent<UICardView>();
             ui.Construct(_playerController.Hand[i], i, this);
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        if (UnityEditor.EditorApplication.isPlaying)
+        {
+            Gizmos.color = Color.red;
+            MapController mapController = DI.Get<MapController>();
+            if (SelectedCard != null)
+            {
+                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                foreach (var pos in SelectedCard.GetAreaOfEffect(mapController.WorldToCell(mousePosition), Vector3.zero))
+                {
+                    Gizmos.DrawWireCube(pos, Vector3.one);
+                }
+            }
+        }
+
     }
 
 }

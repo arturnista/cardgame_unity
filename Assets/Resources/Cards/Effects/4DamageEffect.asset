@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89958b33517b2c94a9edd184c761fa0e, type: 3}
-  m_Name: 4DamageToAllEffect
+  m_Script: {fileID: 11500000, guid: 2d6d319fe094ea94da37619f418e6d7b, type: 3}
+  m_Name: 4DamageEffect
   m_EditorClassIdentifier: 
-  m_Description: Deal 3 damage to all enemies
-  _damage: 3
+  m_Description: Deal 4 damage
+  _damage: 4

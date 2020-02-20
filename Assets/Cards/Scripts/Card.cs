@@ -41,18 +41,18 @@ public class Card : ScriptableObject
         }
     }
     
-    public void Play(Vector3 point)
+    public void Play(Vector3 point, Vector3 casterPosition)
     {
-        List<Vector3> castPosition = GetAreaOfEffect(point);
+        List<Vector3> castPosition = GetAreaOfEffect(point, casterPosition);
         foreach (BaseCardEffect effect in OnPlayEffects)
         {
             effect.OnPlay(castPosition);
         }
     }
 
-    public List<Vector3> GetAreaOfEffect(Vector3 castPosition)
+    public List<Vector3> GetAreaOfEffect(Vector3 castPosition, Vector3 casterPosition)
     {
-        return m_UseArea.GetAreaOfEffect(castPosition, m_AreaValue);
+        return m_UseArea.GetAreaOfEffect(castPosition, casterPosition, m_AreaValue);
     }
 
 }

@@ -78,7 +78,6 @@ public class EnemiesController : MonoBehaviour
         foreach (var position in positions)
         {
             Collider2D collision = Physics2D.OverlapBox(position, overlapSize, 0f, _enemyLayerMask);
-            Debug.Log(collision);
             if (collision != null)
             {
                 result.Add(collision.gameObject);

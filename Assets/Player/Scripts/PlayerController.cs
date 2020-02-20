@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour, IHealth
         
         m_ManaAmount -= card.ManaCost;
 
-        card.Play(point);
+        card.Play(point, transform.position);
 
         m_Hand.Remove(card);
         m_Discard.Add(card);

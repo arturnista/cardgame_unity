@@ -16,7 +16,7 @@ MonoBehaviour:
   m_Icon: {fileID: 21300000, guid: 69af95afa0915934a8160a1401158a09, type: 3}
   m_ManaCost: 1
   m_Range: 0
-  m_UseArea: {fileID: 11400000, guid: 67602f6fb9407784ab4eb8032f888aa0, type: 2}
+  m_UseArea: {fileID: 11400000, guid: a512774b1c97dbc72af11aac6554e917, type: 2}
   m_AreaValue: 5
   m_OnPlayEffects:
-  - {fileID: 11400000, guid: f68fffe192a10604d9acfb893eac4fde, type: 2}
+  - {fileID: 11400000, guid: ad9bb4c8dca4ab463b48aa4e9087899e, type: 2}

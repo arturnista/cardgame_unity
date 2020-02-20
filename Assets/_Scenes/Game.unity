@@ -6434,7 +6434,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938806592}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 1.5, z: 0}
+  m_LocalPosition: {x: 5.5, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1643166949}
@@ -8091,11 +8091,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1701347167}
     m_Modifications:
-    - target: {fileID: 8592752089847443821, guid: 9fe4f33192a8c264c848fccc3398c73a,
+    - target: {fileID: 6521398861147548370, guid: 9fe4f33192a8c264c848fccc3398c73a,
         type: 3}
-      propertyPath: m_Name
-      value: EnemiesController
-      objectReference: {fileID: 0}
+      propertyPath: _spawnPositions.Array.data[0]
+      value: 
+      objectReference: {fileID: 1971488676}
+    - target: {fileID: 6521398861147548370, guid: 9fe4f33192a8c264c848fccc3398c73a,
+        type: 3}
+      propertyPath: _spawnPositions.Array.data[1]
+      value: 
+      objectReference: {fileID: 1938806593}
+    - target: {fileID: 6521398861147548370, guid: 9fe4f33192a8c264c848fccc3398c73a,
+        type: 3}
+      propertyPath: _spawnPositions.Array.data[2]
+      value: 
+      objectReference: {fileID: 952371310}
+    - target: {fileID: 6521398861147548370, guid: 9fe4f33192a8c264c848fccc3398c73a,
+        type: 3}
+      propertyPath: _spawnPositions.Array.data[3]
+      value: 
+      objectReference: {fileID: 776925078}
+    - target: {fileID: 6521398861147548370, guid: 9fe4f33192a8c264c848fccc3398c73a,
+        type: 3}
+      propertyPath: _spawnPositions.Array.data[4]
+      value: 
+      objectReference: {fileID: 336118145}
     - target: {fileID: 6551341369334911383, guid: 9fe4f33192a8c264c848fccc3398c73a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8151,31 +8171,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6521398861147548370, guid: 9fe4f33192a8c264c848fccc3398c73a,
+    - target: {fileID: 8592752089847443821, guid: 9fe4f33192a8c264c848fccc3398c73a,
         type: 3}
-      propertyPath: _spawnPositions.Array.data[0]
-      value: 
-      objectReference: {fileID: 1971488676}
-    - target: {fileID: 6521398861147548370, guid: 9fe4f33192a8c264c848fccc3398c73a,
-        type: 3}
-      propertyPath: _spawnPositions.Array.data[1]
-      value: 
-      objectReference: {fileID: 1938806593}
-    - target: {fileID: 6521398861147548370, guid: 9fe4f33192a8c264c848fccc3398c73a,
-        type: 3}
-      propertyPath: _spawnPositions.Array.data[2]
-      value: 
-      objectReference: {fileID: 952371310}
-    - target: {fileID: 6521398861147548370, guid: 9fe4f33192a8c264c848fccc3398c73a,
-        type: 3}
-      propertyPath: _spawnPositions.Array.data[3]
-      value: 
-      objectReference: {fileID: 776925078}
-    - target: {fileID: 6521398861147548370, guid: 9fe4f33192a8c264c848fccc3398c73a,
-        type: 3}
-      propertyPath: _spawnPositions.Array.data[4]
-      value: 
-      objectReference: {fileID: 336118145}
+      propertyPath: m_Name
+      value: EnemiesController
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fe4f33192a8c264c848fccc3398c73a, type: 3}
 --- !u!4 &6865445938429538877 stripped
@@ -8191,11 +8191,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1701347167}
     m_Modifications:
-    - target: {fileID: 8284508455429974977, guid: 045390a3504bbc6439669ff872b4b509,
-        type: 3}
-      propertyPath: m_Name
-      value: BattlePlayerController
-      objectReference: {fileID: 0}
     - target: {fileID: 8284508455429974976, guid: 045390a3504bbc6439669ff872b4b509,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8250,6 +8245,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8284508455429974977, guid: 045390a3504bbc6439669ff872b4b509,
+        type: 3}
+      propertyPath: m_Name
+      value: BattlePlayerController
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 045390a3504bbc6439669ff872b4b509, type: 3}
