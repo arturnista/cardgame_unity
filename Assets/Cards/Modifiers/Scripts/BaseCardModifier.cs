@@ -5,13 +5,13 @@ using UnityEngine;
 public abstract class BaseCardModifier : ScriptableObject
 {
 
-    [SerializeField] private string m_Title;
-    public string Title { get => Title; }
+    [SerializeField] private string m_Title = default;
+    public string Title { get => m_Title; }
 
-    [SerializeField] [TextArea] private string m_Description;
-    public string Description { get => Description; }
+    [SerializeField] [TextArea] private string m_Description = default;
+    public string Description { get => m_Description; }
 
-    [SerializeField] private Sprite m_Icon;
+    [SerializeField] private Sprite m_Icon = default;
     public Sprite Icon { get => m_Icon; }
 
     protected int m_Amount;

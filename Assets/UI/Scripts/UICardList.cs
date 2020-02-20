@@ -9,12 +9,12 @@ public class UICardList : MonoBehaviour
 
     public static UICardList Main;
 
-    [SerializeField] private GameObject _cardPrefab;
+    [SerializeField] private GameObject _cardPrefab = default;
     [Header("UI")]
-    [SerializeField] private TextMeshProUGUI _titleText;
-    [SerializeField] private Button _backButton;
-    [SerializeField] private Canvas _contentCanvas;
-    [SerializeField] private Canvas _emptyContentCanvas;
+    [SerializeField] private TextMeshProUGUI _titleText = default;
+    [SerializeField] private Button _backButton = default;
+    [SerializeField] private Canvas _contentCanvas = default;
+    [SerializeField] private Canvas _emptyContentCanvas = default;
 
     private KeyCode _backHotkey;
     private Canvas _canvas;

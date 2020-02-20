@@ -7,7 +7,7 @@ public class EnemyAttackAction : BaseEnemyAction
 {
     
     [Header("Attack")]
-    [SerializeField] private int _damage;
+    [SerializeField] private int _damage = default;
 
     public override void Execute(PlayerController playerController, EnemiesController enemiesController, GameObject self)
     {

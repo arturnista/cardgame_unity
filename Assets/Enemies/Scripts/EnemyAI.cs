@@ -7,7 +7,7 @@ using TMPro;
 public class EnemyAI : MonoBehaviour
 {
 
-    [SerializeField] private List<BaseEnemyAction> _actions;
+    [SerializeField] private List<BaseEnemyAction> _actions = default;
     private Queue<BaseEnemyAction> _actionQueue;
 
     private EnemyHealth _enemyHealth;

@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class MapController : MonoBehaviour
 {
 
-    [SerializeField] private GameObject _mousePosition;
+    [SerializeField] private GameObject _mousePosition = default;
     private Grid _grid;
     private bool _isMouseInside;
 

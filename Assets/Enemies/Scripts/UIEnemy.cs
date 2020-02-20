@@ -8,18 +8,18 @@ public class UIEnemy : MonoBehaviour
 {
 
     [Header("AI")]
-    [SerializeField] private Image _intentIcon;
-    [SerializeField] private TextMeshProUGUI _intentTextValue;
+    [SerializeField] private Image _intentIcon = default;
+    [SerializeField] private TextMeshProUGUI _intentTextValue = default;
 
     [Header("Health")]
-    [SerializeField] protected TextMeshProUGUI _healthTextValue;
-    [SerializeField] protected Image _healthBar;
-    [SerializeField] protected Canvas _armorCanvas;
-    [SerializeField] protected TextMeshProUGUI _armorTextValue;
+    [SerializeField] protected TextMeshProUGUI _healthTextValue = default;
+    [SerializeField] protected Image _healthBar = default;
+    [SerializeField] protected Canvas _armorCanvas = default;
+    [SerializeField] protected TextMeshProUGUI _armorTextValue = default;
 
     [Header("Health")]
-    [SerializeField] protected Canvas _modifiersCanvas;
-    [SerializeField] protected GameObject _modifierTemplate;
+    [SerializeField] protected Canvas _modifiersCanvas = default;
+    [SerializeField] protected GameObject _modifierTemplate = default;
 
     private EnemyAI _enemyAI;
     private EntityHealth _entityHealth;

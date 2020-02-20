@@ -6,7 +6,7 @@ public class GameController : MonoBehaviour
 {
     
     [SerializeField] private GameObject _cardTemplate = default;
-    [SerializeField] private GameObject _cardParent;
+    [SerializeField] private GameObject _cardParent = default;
 
     private PlayerController _playerController;
     private EnemiesController _enemiesController;

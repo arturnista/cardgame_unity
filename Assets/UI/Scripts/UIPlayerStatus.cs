@@ -7,9 +7,9 @@ using TMPro;
 public class UIPlayerStatus : MonoBehaviour
 {
     
-    [SerializeField] private TextMeshProUGUI _playerManaText;
-    [SerializeField] private TextMeshProUGUI _playerHealthText;
-    [SerializeField] private TextMeshProUGUI _playerArmorText;
+    [SerializeField] private TextMeshProUGUI _playerManaText = default;
+    [SerializeField] private TextMeshProUGUI _playerHealthText = default;
+    [SerializeField] private TextMeshProUGUI _playerArmorText = default;
 
     private PlayerController _playerController;
 

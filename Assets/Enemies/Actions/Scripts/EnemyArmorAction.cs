@@ -7,7 +7,7 @@ public class EnemyArmorAction : BaseEnemyAction
 {
     
     [Header("Armor")]
-    [SerializeField] private int _armor;
+    [SerializeField] private int _armor = default;
 
     public override void Execute(PlayerController playerController, EnemiesController enemiesController, GameObject self)
     {

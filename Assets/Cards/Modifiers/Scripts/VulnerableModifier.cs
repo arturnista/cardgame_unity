@@ -6,7 +6,7 @@ using UnityEngine;
 public class VulnerableModifier : BaseCardModifier
 {
 
-    [SerializeField] [Range(1f, 2f)] private float _reduceAmount;
+    [SerializeField] [Range(1f, 2f)] private float _reduceAmount = default;
 
     public override bool OnEndTurn(GameObject self)
     {

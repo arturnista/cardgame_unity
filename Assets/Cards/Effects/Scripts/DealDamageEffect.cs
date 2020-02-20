@@ -8,21 +8,15 @@ public class DealDamageEffect : BaseCardEffect
 
     [SerializeField] private int _damage = 5;
 
-    public override void OnPlay(List<Vector3> castPositions)
+    public override void OnTargetPlay(GameObject target)
     {
-        EnemiesController enemiesController = DI.Get<EnemiesController>();
+        IHealth targetHealth = target.GetComponent<IHealth>();
+        IModifiersHolder targetModifiers = target.GetComponent<IModifiersHolder>();
+        IModifiersHolder damagerModifiers = GameObject.FindObjectOfType<PlayerController>().GetComponent<IModifiersHolder>();
 
-        foreach (var target in enemiesController.GetEnemiesAtPositions(castPositions))
-        {
-            IHealth targetHealth = target.GetComponent<IHealth>();
-            IModifiersHolder targetModifiers = target.GetComponent<IModifiersHolder>();
-            IModifiersHolder damagerModifiers = GameObject.FindObjectOfType<PlayerController>().GetComponent<IModifiersHolder>();
+        Damage damage = DamageCalculator.DealDamage(_damage, damagerModifiers, targetHealth, targetModifiers);
 
-            Damage damage = DamageCalculator.DealDamage(_damage, damagerModifiers, targetHealth, targetModifiers);
-
-            targetHealth.DealDamage(damage);
-        }
-        
+        targetHealth.DealDamage(damage);
     }
 
 }
