@@ -13,7 +13,7 @@ public class UIPlayerStatus : MonoBehaviour
 
     private PlayerController _playerController;
 
-    void Awake()
+    void Start()
     {
         _playerController = GameObject.FindObjectOfType<PlayerController>();
     }

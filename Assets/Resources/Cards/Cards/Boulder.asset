@@ -15,8 +15,8 @@ MonoBehaviour:
   m_Title: Boulder
   m_Icon: {fileID: 21300000, guid: 76df10124d49df74bb129d373dc51c2f, type: 3}
   m_ManaCost: 2
-  m_Range: 0
-  m_UseArea: {fileID: 11400000, guid: 67602f6fb9407784ab4eb8032f888aa0, type: 2}
-  m_AreaValue: 2
+  m_CastRange: 3
+  m_CastArea: {fileID: 11400000, guid: 67602f6fb9407784ab4eb8032f888aa0, type: 2}
+  m_CastAreaSize: 1
   m_OnPlayEffects:
   - {fileID: 11400000, guid: 0f8a0db5bc3f04744b9f3c0c6e4d0584, type: 2}

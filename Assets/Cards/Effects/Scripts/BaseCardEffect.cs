@@ -11,9 +11,9 @@ public abstract class BaseCardEffect : ScriptableObject
     public virtual void OnPlay(List<Vector3> castPositions)
     {
 
-        EnemiesController enemiesController = DI.Get<EnemiesController>();
+        GameController gameController = DI.Get<GameController>();
 
-        foreach (var target in enemiesController.GetEnemiesAtPositions(castPositions))
+        foreach (var target in gameController.GetEntitiesAtPositions(castPositions))
         {
             OnTargetPlay(target);
         }

@@ -15,8 +15,8 @@ MonoBehaviour:
   m_Title: Poison Touch
   m_Icon: {fileID: 21300000, guid: b54734a6553a84f4dbe3f9249263ff5e, type: 3}
   m_ManaCost: 1
-  m_Range: 0
-  m_UseArea: {fileID: 11400000, guid: a0383ff32501d2d48b2cc8dc22dbf7b0, type: 2}
-  m_AreaValue: 0
+  m_CastRange: 3
+  m_CastArea: {fileID: 11400000, guid: 67602f6fb9407784ab4eb8032f888aa0, type: 2}
+  m_CastAreaSize: 0
   m_OnPlayEffects:
   - {fileID: 11400000, guid: 6e4e27d6a5e4e8f459c5cacb090a187b, type: 2}

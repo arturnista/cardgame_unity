@@ -15,15 +15,18 @@ public class Card : ScriptableObject
     [SerializeField] protected int m_ManaCost = default;
     public int ManaCost { get => m_ManaCost; protected set => m_ManaCost = value; }
 
-    [SerializeField] protected int m_Range = default;
-    public int Range { get => m_Range; protected set => m_Range = value; }
+    [Header("Cast area")]
+    [SerializeField] protected int m_CastRange = default;
+    public int CastRange { get => m_CastRange; protected set => m_CastRange = value; }
 
-    [SerializeField] protected BaseCardArea m_UseArea = default;
-    public BaseCardArea UseArea { get => m_UseArea; protected set => m_UseArea = value; }
+    [SerializeField] protected BaseCardArea m_CastArea = default;
+    public BaseCardArea CastArea { get => m_CastArea; protected set => m_CastArea = value; }
 
-    [SerializeField] protected int m_AreaValue = default;
-    public int AreaValue { get => m_AreaValue; protected set => m_AreaValue = value; }
+    [SerializeField] protected int m_CastAreaSize = default;
+    public int CastAreaSize { get => m_CastAreaSize; protected set => m_CastAreaSize = value; }
 
+    [Header("Effects")]
+    [Tooltip("OnPlay Card Effects are actions that the card will do when Played")]
     [SerializeField] protected List<BaseCardEffect> m_OnPlayEffects = default;
     public List<BaseCardEffect> OnPlayEffects { get => m_OnPlayEffects; protected set => m_OnPlayEffects = value; }
 
@@ -52,7 +55,7 @@ public class Card : ScriptableObject
 
     public List<Vector3> GetAreaOfEffect(Vector3 castPosition, Vector3 casterPosition)
     {
-        return m_UseArea.GetAreaOfEffect(castPosition, casterPosition, m_AreaValue);
+        return m_CastArea.GetAreaOfEffect(castPosition, casterPosition, m_CastAreaSize);
     }
 
 }

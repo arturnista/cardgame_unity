@@ -43,6 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02813238a34a2d8449ab987562c62be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerEntityPrefab: {fileID: 1844081199359007913, guid: 26076549b072d4c479299f12f98c6731,
+    type: 3}
   _cardTemplate: {fileID: 1577873094432798953, guid: ab81cb96a06c5f34eafab377bc51aabc,
     type: 3}
   _cardParent: {fileID: 0}
+  _entitiesLayerMask:
+    serializedVersion: 2
+    m_Bits: 33024

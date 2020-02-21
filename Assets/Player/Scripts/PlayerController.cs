@@ -2,18 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, IHealth
+public class PlayerController : EntityHealth
 {
     
     [SerializeField] private CardDeck _deck = default;
-    [SerializeField] private int m_MaxHealth;
-    public int MaxHealth { get => m_MaxHealth; protected set => m_MaxHealth = value; }
-    
-    private int m_Health;
-    public int Health { get => m_Health; protected set => m_Health = value; }
-    
-    private int m_Armor;
-    public int Armor { get => m_Armor; set => m_Armor = value; }
 
     private List<Card> m_Draw;
     public List<Card> Draw { get => m_Draw; }
@@ -117,12 +109,6 @@ public class PlayerController : MonoBehaviour, IHealth
             m_Discard.Add(m_Hand[0]);
             m_Hand.RemoveAt(0);
         }
-    }
-
-    public virtual void DealDamage(Damage damage)
-    {        
-        Health -= damage.Health;
-        Armor -= damage.Armor;
     }
 
 }
