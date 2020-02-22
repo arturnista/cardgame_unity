@@ -80,7 +80,12 @@ public class GameController : MonoBehaviour
             EndPlayerTurn();
         }
 
-        if (!_selectedCardThisFrame && Input.GetKeyDown(KeyCode.Mouse0) && m_SelectedCard != null)
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            DeselectCard();
+        }
+
+        if (!_selectedCardThisFrame && Input.GetKeyDown(KeyCode.Mouse0))
         {
             Vector3 mousePosition = _camera.ScreenToWorldPoint(Input.mousePosition);
             SelectPoint(_mapController.WorldToCell(mousePosition));
@@ -131,7 +136,19 @@ public class GameController : MonoBehaviour
             return;
         }
 
-        if (m_SelectedCard != null) m_SelectedCard.Deselect();
+        if (m_SelectedCard != null)
+        {
+            if (m_SelectedCard.Index == index)
+            {
+                DeselectCard();
+                return;
+            }
+            else
+            {
+                m_SelectedCard.Deselect();
+            }
+        }
+
         m_SelectedCard = new CardSelection(index, card, cardView);
 
         _selectedCardThisFrame = true;
@@ -143,12 +160,20 @@ public class GameController : MonoBehaviour
         if (m_SelectedCard != null)
         {
             _playerEntity.PlayerDeck.PlayCard(m_SelectedCard.Index, point);
-            
-            m_SelectedCard.Deselect();
-            m_SelectedCard = null;
-
-            HideDamageArea();
+            DeselectCard();
         }
+        else
+        {
+            _playerEntity.Movement.MoveTo(point);
+        }
+    }
+
+    public void DeselectCard()
+    {
+        m_SelectedCard.Deselect();
+        m_SelectedCard = null;
+
+        HideDamageArea();
     }
 
     public void DrawCards()
@@ -204,24 +229,6 @@ public class GameController : MonoBehaviour
         }
 
         return result;
-    }
-
-    void OnDrawGizmos()
-    {
-        if (UnityEditor.EditorApplication.isPlaying)
-        {
-            Gizmos.color = Color.red;
-            MapController mapController = DI.Get<MapController>();
-            if (SelectedCard != null)
-            {
-                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                foreach (var pos in SelectedCard.GetAreaOfEffect(mapController.WorldToCell(mousePosition), _playerEntity.transform.position))
-                {
-                    Gizmos.DrawWireCube(pos, Vector3.one * .7f);
-                }
-            }
-        }
-
     }
 
 }

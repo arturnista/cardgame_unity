@@ -11,6 +11,9 @@ public class PlayerEntity : Entity
     protected PlayerDeck m_PlayerDeck;
     public PlayerDeck PlayerDeck { get => m_PlayerDeck; }
 
+    protected PlayerMovement m_PlayerMovement;
+    public PlayerMovement PlayerMovement { get => m_PlayerMovement; }
+
     protected EntityModifiers m_EntityModifiers;
     public EntityModifiers EntityModifiers { get => m_EntityModifiers; }
 
@@ -19,6 +22,7 @@ public class PlayerEntity : Entity
         base.Awake();
         m_PlayerHealth = GetComponent<PlayerHealth>();
         m_PlayerDeck = GetComponent<PlayerDeck>();
+        m_PlayerMovement = GetComponent<PlayerMovement>();
         m_EntityModifiers = GetComponent<EntityModifiers>();
     }
 
