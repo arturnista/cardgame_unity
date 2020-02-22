@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : EntityHealth
+public class PlayerDeck : MonoBehaviour
 {
     
     [SerializeField] private CardDeck _deck = default;
@@ -16,22 +16,17 @@ public class PlayerController : EntityHealth
     private List<Card> m_Discard;
     public List<Card> Discard { get => m_Discard; }
 
-    private int m_ManaAmount;
-    public int ManaAmount { get => m_ManaAmount; }
-    
     private GameController _gameController;
-    private EnemiesController _enemiesController;
+    private PlayerHealth _playerHealth;
 
     void Awake()
     {
         _gameController = GameObject.FindObjectOfType<GameController>();
-        _enemiesController = GameObject.FindObjectOfType<EnemiesController>();
-
-        m_Health = m_MaxHealth;
+        _playerHealth = GetComponent<PlayerHealth>();
 
         m_Draw = new List<Card>();
         m_Hand = new List<Card>();
-        m_Discard = new List<Card>(_deck.Cards);      
+        m_Discard = new List<Card>(_deck.Cards);    
     }
 
     public void StartGame()
@@ -65,13 +60,13 @@ public class PlayerController : EntityHealth
 
     public void PlayCard(Card card, Vector3 point)
     {
-        if (card.ManaCost > m_ManaAmount)
+        if (card.ManaCost > _playerHealth.ManaAmount)
         {
             DebugText.ShowText("NOT ENOUGH MANA");
             return;
         }
         
-        m_ManaAmount -= card.ManaCost;
+        _playerHealth.ManaAmount -= card.ManaCost;
 
         card.Play(point, transform.position);
 
@@ -93,7 +88,6 @@ public class PlayerController : EntityHealth
 
     public void StartTurn()
     {
-        m_ManaAmount = 3;
         for (int i = 0; i < 5; i++)
         {
             if (m_Draw.Count == 0) ShuffleHand();

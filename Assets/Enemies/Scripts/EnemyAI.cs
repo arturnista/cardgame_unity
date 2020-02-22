@@ -27,12 +27,12 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    public void Execute(PlayerController playerController, EnemiesController enemiesController, GameObject self)
+    public void Execute(PlayerEntity playerEntity, EnemiesController enemiesController, GameObject self)
     {
         if (_enemyHealth.IsDead) return;
         
         BaseEnemyAction action = _actionQueue.Dequeue();
-        action.Execute(playerController, enemiesController, self);
+        action.Execute(playerEntity, enemiesController, self);
         _actionQueue.Enqueue(action);
     }
 

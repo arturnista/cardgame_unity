@@ -8,9 +8,9 @@ public class AddModifierEffect : BaseCardEffect
 
     [SerializeField] private BaseCardModifier _modifier = default;
 
-    public override void OnTargetPlay(int value, GameObject target)
+    public override void OnTargetPlay(GameObject target, int[] values)
     {
-        target.GetComponent<EntityModifiers>().AddModifier(_modifier, value);
+        target.GetComponent<EntityModifiers>().AddModifier(_modifier, values[0]);
     }
 
 }

@@ -9,10 +9,10 @@ public class EnemyAttackAction : BaseEnemyAction
     [Header("Attack")]
     [SerializeField] private int _damage = default;
 
-    public override void Execute(PlayerController playerController, EnemiesController enemiesController, GameObject self)
+    public override void Execute(PlayerEntity playerEntity, EnemiesController enemiesController, GameObject self)
     {
-        IHealth targetHealth = playerController.GetComponent<IHealth>();
-        IModifiersHolder targetModifiers = playerController.GetComponent<IModifiersHolder>();
+        IHealth targetHealth = playerEntity.Health;
+        IModifiersHolder targetModifiers = playerEntity.ModifiersHolder;
         IModifiersHolder selfModifiers = self.GetComponent<IModifiersHolder>();
 
         Damage damage = DamageCalculator.DealDamage(_damage, selfModifiers, targetHealth, targetModifiers);

@@ -7,7 +7,7 @@ public class CardEffectItem
 {
 
     public BaseCardEffect Effect;
-    public int Value;
+    public int[] Values;
 
 }
 
@@ -46,7 +46,7 @@ public class Card : ScriptableObject
             foreach (var item in OnPlayEffects)
             {
                 if (description.Length > 0) description += ". ";
-                description += item.Effect.GetDescription(item.Value);
+                description += item.Effect.GetDescription(item.Values);
             }
 
             return description;
@@ -58,7 +58,7 @@ public class Card : ScriptableObject
         List<Vector3> castPosition = GetAreaOfEffect(point, casterPosition);
         foreach (CardEffectItem item in OnPlayEffects)
         {
-            item.Effect.OnPlay(item.Value, castPosition);
+            item.Effect.OnPlay(castPosition, item.Values);
         }
     }
 

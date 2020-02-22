@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject _cardTemplate = default;
     [SerializeField] private GameObject _cardParent = default;
 
-    private PlayerController _playerController;
+    private PlayerEntity _playerEntity;
     private EnemiesController _enemiesController;
     private MapController _mapController;
 
@@ -31,7 +31,7 @@ public class GameController : MonoBehaviour
         DI.Set<GameController>(this);
         
         GameObject playerCreated = Instantiate(_playerEntityPrefab, new Vector3(.5f, -.5f), Quaternion.identity);
-        _playerController = playerCreated.GetComponent<PlayerController>();
+        _playerEntity = playerCreated.GetComponent<PlayerEntity>();
 
         _camera = Camera.main;
     }
@@ -46,7 +46,7 @@ public class GameController : MonoBehaviour
 
     void StartGame()
     {
-        _playerController.StartGame();
+        _playerEntity.StartGame();
         _enemiesController.StartGame();
         EndEnemiesTurn();
     }
@@ -77,13 +77,13 @@ public class GameController : MonoBehaviour
 
     void StartPlayerTurn()
     {
-        _playerController.StartTurn();
+        _playerEntity.StartTurn();
         DrawCards();
     }
 
     public void EndPlayerTurn()
     {
-        _playerController.EndTurn();
+        _playerEntity.EndTurn();
         DrawCards();
 
         StartEnemiesTurn();
@@ -103,7 +103,7 @@ public class GameController : MonoBehaviour
 
     public void SelectCard(Card card)
     {
-        if (card.ManaCost > _playerController.ManaAmount)
+        if (card.ManaCost > _playerEntity.PlayerHealth.ManaAmount)
         {
             DebugText.ShowText("NOT ENOUGH MANA");
             return;
@@ -117,7 +117,7 @@ public class GameController : MonoBehaviour
     {
         if (m_SelectedCard != null)
         {
-            _playerController.PlayCard(m_SelectedCard, point);
+            _playerEntity.PlayerDeck.PlayCard(m_SelectedCard, point);
             m_SelectedCard = null;
             HideDamageArea();
         }
@@ -130,10 +130,10 @@ public class GameController : MonoBehaviour
             Destroy(child.gameObject);
         }
         
-        for (int i = 0; i < _playerController.Hand.Count; i++)
+        for (int i = 0; i < _playerEntity.PlayerDeck.Hand.Count; i++)
         {
             UICardView ui = Instantiate(_cardTemplate,  _cardParent.transform).GetComponent<UICardView>();
-            ui.Construct(_playerController.Hand[i], i, this);
+            ui.Construct(_playerEntity.PlayerDeck.Hand[i], i, this);
         }
     }
 
@@ -148,7 +148,7 @@ public class GameController : MonoBehaviour
         _lastMousePosition = mousePosition;
 
         HideDamageArea();
-        foreach (var pos in SelectedCard.GetAreaOfEffect(mousePosition, _playerController.transform.position))
+        foreach (var pos in SelectedCard.GetAreaOfEffect(mousePosition, _playerEntity.transform.position))
         {
             Instantiate(_damageMarkerPrefab, pos, Quaternion.identity, _damageMarkerParent.transform);
         }
@@ -187,7 +187,7 @@ public class GameController : MonoBehaviour
             if (SelectedCard != null)
             {
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                foreach (var pos in SelectedCard.GetAreaOfEffect(mapController.WorldToCell(mousePosition), _playerController.transform.position))
+                foreach (var pos in SelectedCard.GetAreaOfEffect(mapController.WorldToCell(mousePosition), _playerEntity.transform.position))
                 {
                     Gizmos.DrawWireCube(pos, Vector3.one * .7f);
                 }

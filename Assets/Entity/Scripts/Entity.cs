@@ -11,10 +11,25 @@ public class Entity : MonoBehaviour
     protected IModifiersHolder m_ModifiersHolder;
     public IModifiersHolder ModifiersHolder { get => m_ModifiersHolder; }
 
-    void Awake()
+    protected virtual void Awake()
     {
         m_Health = GetComponent<IHealth>();
         m_ModifiersHolder = GetComponent<IModifiersHolder>();
+    }
+
+    public virtual void StartGame()
+    {
+
+    }
+
+    public virtual void StartTurn()
+    {
+
+    }
+
+    public virtual void EndTurn()
+    {
+
     }
 
 }

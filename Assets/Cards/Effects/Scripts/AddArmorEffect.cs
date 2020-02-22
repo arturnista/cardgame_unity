@@ -6,10 +6,9 @@ using UnityEngine;
 public class AddArmorEffect : BaseCardEffect
 {
 
-    public override void OnTargetPlay(int value, GameObject target)
+    public override void OnTargetPlay(GameObject target, int[] values)
     {
-        PlayerController playerController = GameObject.FindObjectOfType<PlayerController>();
-        playerController.Armor += value;
+        target.GetComponent<Entity>().Health.Armor += values[0];
     }
 
 }

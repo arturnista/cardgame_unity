@@ -12,7 +12,7 @@ public abstract class BaseEnemyAction : ScriptableObject
     [SerializeField] protected Color m_IntentIconColor;
     public Color IntentIconColor { get => m_IntentIconColor; }
 
-    public abstract void Execute(PlayerController playerController, EnemiesController enemiesController, GameObject self);
+    public abstract void Execute(PlayerEntity playerEntity, EnemiesController enemiesController, GameObject self);
 
     public virtual EnemyIntent GetIntent()
     {

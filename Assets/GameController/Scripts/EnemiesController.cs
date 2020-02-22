@@ -49,17 +49,18 @@ public class EnemiesController : MonoBehaviour
 
     public void StartTurn()
     {
-        PlayerController playerController = GameObject.FindObjectOfType<PlayerController>();
         for (int i = m_Enemies.Count - 1; i >= 0; i--)
         {
             GameObject enemy = m_Enemies[i];
             enemy.GetComponent<EntityModifiers>().StartTurn();
 
         }
+        
+        PlayerEntity playerEntity = GameObject.FindObjectOfType<PlayerEntity>();
         for (int i = m_Enemies.Count - 1; i >= 0; i--)
         {
             GameObject enemy = m_Enemies[i];
-            enemy.GetComponent<EnemyAI>().Execute(playerController, this, enemy);
+            enemy.GetComponent<EnemyAI>().Execute(playerEntity, this, enemy);
         }
 
         _gameController.EndEnemiesTurn();

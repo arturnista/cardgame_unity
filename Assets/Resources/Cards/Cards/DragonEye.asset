@@ -20,4 +20,4 @@ MonoBehaviour:
   m_CastAreaSize: 0
   m_OnPlayEffects:
   - Effect: {fileID: 11400000, guid: d91804248dd9630408b4a8415e328546, type: 2}
-    Value: 1
+    Values: 01000000
