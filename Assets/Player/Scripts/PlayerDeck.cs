@@ -58,8 +58,9 @@ public class PlayerDeck : MonoBehaviour
         UICardList.Main.Show("Discard pile", m_Discard, KeyCode.D);
     }
 
-    public void PlayCard(Card card, Vector3 point)
+    public void PlayCard(int index, Vector3 point)
     {
+        Card card = m_Hand[index];
         if (card.ManaCost > _playerHealth.ManaAmount)
         {
             DebugText.ShowText("NOT ENOUGH MANA");
@@ -70,7 +71,7 @@ public class PlayerDeck : MonoBehaviour
 
         card.Play(point, transform.position);
 
-        m_Hand.Remove(card);
+        m_Hand.RemoveAt(index);
         m_Discard.Add(card);
 
         _gameController.DrawCards();

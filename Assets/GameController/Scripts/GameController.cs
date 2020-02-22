@@ -3,6 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+
+class CardSelection
+{
+    
+    public CardSelection(int index, Card card, UICardView uiCard)
+    {
+        UICard = uiCard;
+        Card = card;
+        Index = index;
+
+        UICard.Select();
+    }
+
+    public UICardView UICard;
+    public Card Card;
+    public int Index;
+
+    public void Deselect()
+    {
+        UICard.Deselect();
+    }
+
+}
+
 public class GameController : MonoBehaviour
 {
     
@@ -20,8 +44,8 @@ public class GameController : MonoBehaviour
 
     private Camera _camera;
 
-    private Card m_SelectedCard;
-    public Card SelectedCard { get => m_SelectedCard; }
+    private CardSelection m_SelectedCard;
+    public Card SelectedCard { get => m_SelectedCard?.Card; }
 
     private bool _selectedCardThisFrame = false;
     private Vector3 _lastMousePosition;
@@ -30,15 +54,13 @@ public class GameController : MonoBehaviour
     {
         DI.Set<GameController>(this);
         
-        GameObject playerCreated = Instantiate(_playerEntityPrefab, new Vector3(.5f, -.5f), Quaternion.identity);
-        _playerEntity = playerCreated.GetComponent<PlayerEntity>();
-
+        _playerEntity = Instantiate(_playerEntityPrefab, new Vector3(.5f, -.5f), Quaternion.identity).GetComponent<PlayerEntity>();
         _camera = Camera.main;
     }
 
     void Start()
     {
-        _enemiesController = GameObject.FindObjectOfType<EnemiesController>();
+        _enemiesController = DI.Get<EnemiesController>();
         _mapController = DI.Get<MapController>();
         
         StartGame();
@@ -101,14 +123,17 @@ public class GameController : MonoBehaviour
         StartPlayerTurn();
     }
 
-    public void SelectCard(Card card)
+    public void SelectCard(int index, Card card, UICardView cardView)
     {
         if (card.ManaCost > _playerEntity.PlayerHealth.ManaAmount)
         {
             DebugText.ShowText("NOT ENOUGH MANA");
             return;
         }
-        m_SelectedCard = card;
+
+        if (m_SelectedCard != null) m_SelectedCard.Deselect();
+        m_SelectedCard = new CardSelection(index, card, cardView);
+
         _selectedCardThisFrame = true;
         DrawDamageArea(true);
     }
@@ -117,8 +142,11 @@ public class GameController : MonoBehaviour
     {
         if (m_SelectedCard != null)
         {
-            _playerEntity.PlayerDeck.PlayCard(m_SelectedCard, point);
+            _playerEntity.PlayerDeck.PlayCard(m_SelectedCard.Index, point);
+            
+            m_SelectedCard.Deselect();
             m_SelectedCard = null;
+
             HideDamageArea();
         }
     }

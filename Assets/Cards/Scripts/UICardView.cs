@@ -70,7 +70,7 @@ public class UICardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerDown(PointerEventData pointerEventData)
     {
         if (!_isInteractable) return;
-        _gameController.SelectCard(_card);
+        _gameController.SelectCard(_cardIndex, _card, this);
     }
     
     public void Select()
@@ -78,7 +78,7 @@ public class UICardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         _selectBorder.SetActive(true);
     }
 
-    public void Unselect()
+    public void Deselect()
     {
         _selectBorder.SetActive(false);
     }

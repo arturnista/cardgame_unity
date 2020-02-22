@@ -66,22 +66,25 @@ public class UICardList : MonoBehaviour
 
     void Display()
     {
-        _canvas.enabled = true;
-        _graphicRaycaster.enabled = true;
+        foreach (Transform child in _contentCanvas.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        gameObject.SetActive(true);
+        // _canvas.enabled = true;
+        // _graphicRaycaster.enabled = true;
 
         _backButton.onClick.AddListener(HandleBack);
     }
 
     void Hide()
-    {
-        _canvas.enabled = false;
-        _graphicRaycaster.enabled = false;
+    {       
+        gameObject.SetActive(false);
+        // _canvas.enabled = false;
+        // _graphicRaycaster.enabled = false;
 
         _backButton.onClick.RemoveListener(HandleBack);
-        foreach (Transform child in _contentCanvas.transform)
-        {
-            Destroy(child.gameObject);
-        }
     }
 
 }
