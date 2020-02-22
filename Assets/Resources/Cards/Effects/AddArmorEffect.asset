@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d6d319fe094ea94da37619f418e6d7b, type: 3}
-  m_Name: 5DamageEffect
+  m_Script: {fileID: 11500000, guid: 640113e1ec804774c816e90ed3b86806, type: 3}
+  m_Name: AddArmorEffect
   m_EditorClassIdentifier: 
-  m_Description: Deal 5 damage
-  _damage: 5
+  m_Description: Add {0} armor
+  m_CastLayer:
+  - {fileID: 11400000, guid: 665eb354e9424394fa36286045d057f9, type: 2}
+  _armor: 5

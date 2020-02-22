@@ -7,9 +7,12 @@ public class GameController : MonoBehaviour
 {
     
     [SerializeField] private GameObject _playerEntityPrefab = default;
+    [SerializeField] private GameObject _damageMarkerPrefab = default;
+    [SerializeField] private GameObject _damageMarkerParent = default;
+    [SerializeField] private LayerMask _entitiesLayerMask = default;
+    [Header("UI")]
     [SerializeField] private GameObject _cardTemplate = default;
     [SerializeField] private GameObject _cardParent = default;
-    [SerializeField] private LayerMask _entitiesLayerMask = default;
 
     private PlayerController _playerController;
     private EnemiesController _enemiesController;
@@ -21,6 +24,7 @@ public class GameController : MonoBehaviour
     public Card SelectedCard { get => m_SelectedCard; }
 
     private bool _selectedCardThisFrame = false;
+    private Vector3 _lastMousePosition;
 
     void Awake()
     {
@@ -64,6 +68,11 @@ public class GameController : MonoBehaviour
     void LateUpdate()
     {
         _selectedCardThisFrame = false;
+
+        if (SelectedCard != null)
+        {
+            DrawDamageArea();
+        }
     }
 
     void StartPlayerTurn()
@@ -101,6 +110,7 @@ public class GameController : MonoBehaviour
         }
         m_SelectedCard = card;
         _selectedCardThisFrame = true;
+        DrawDamageArea(true);
     }
 
     public void SelectPoint(Vector3 point)
@@ -109,6 +119,7 @@ public class GameController : MonoBehaviour
         {
             _playerController.PlayCard(m_SelectedCard, point);
             m_SelectedCard = null;
+            HideDamageArea();
         }
     }
 
@@ -123,6 +134,31 @@ public class GameController : MonoBehaviour
         {
             UICardView ui = Instantiate(_cardTemplate,  _cardParent.transform).GetComponent<UICardView>();
             ui.Construct(_playerController.Hand[i], i, this);
+        }
+    }
+
+    void DrawDamageArea(bool force = false)
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition = _mapController.WorldToCell(mousePosition);
+        if (!force && _lastMousePosition == mousePosition)
+        {
+            return;
+        }
+        _lastMousePosition = mousePosition;
+
+        HideDamageArea();
+        foreach (var pos in SelectedCard.GetAreaOfEffect(mousePosition, _playerController.transform.position))
+        {
+            Instantiate(_damageMarkerPrefab, pos, Quaternion.identity, _damageMarkerParent.transform);
+        }
+    }
+    
+    void HideDamageArea()
+    {
+        foreach (Transform child in _damageMarkerParent.transform)
+        {
+            Destroy(child.gameObject);
         }
     }
 

@@ -14,6 +14,7 @@ public class UICardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField] private TextMeshProUGUI _titleText = default;
     [SerializeField] private TextMeshProUGUI _descriptionText = default;
     [SerializeField] private TextMeshProUGUI _manaCostText = default;
+    [SerializeField] private GameObject _selectBorder = default;
 
     private bool _isInteractable;
 
@@ -27,6 +28,7 @@ public class UICardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
+        _selectBorder.SetActive(false);
     }
 
     public void Construct(Card card)
@@ -69,6 +71,16 @@ public class UICardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         if (!_isInteractable) return;
         _gameController.SelectCard(_card);
+    }
+    
+    public void Select()
+    {
+        _selectBorder.SetActive(true);
+    }
+
+    public void Unselect()
+    {
+        _selectBorder.SetActive(false);
     }
 
 }

@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 640113e1ec804774c816e90ed3b86806, type: 3}
-  m_Name: Add5ArmorEffect
+  m_Script: {fileID: 11500000, guid: 74524ca32768272439f0ee1625c3400c, type: 3}
+  m_Name: Enemy
   m_EditorClassIdentifier: 
-  m_Description: Add 5 armor
-  _armor: 5

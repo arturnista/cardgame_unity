@@ -6,12 +6,10 @@ using UnityEngine;
 public class AddArmorEffect : BaseCardEffect
 {
 
-    [SerializeField] private int _armor = 5;
-
-    public override void OnTargetPlay(GameObject target)
+    public override void OnTargetPlay(int value, GameObject target)
     {
         PlayerController playerController = GameObject.FindObjectOfType<PlayerController>();
-        playerController.Armor += _armor;
+        playerController.Armor += value;
     }
 
 }

@@ -1033,6 +1033,7 @@ GameObject:
   - component: {fileID: 4295225615125200905}
   - component: {fileID: 2537465852971546368}
   - component: {fileID: 8685808982634269053}
+  - component: {fileID: 6932464147349150875}
   - component: {fileID: 8111733277275277981}
   m_Layer: 8
   m_Name: Goblin
@@ -1136,6 +1137,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd06df3c369710c48b6cd7eee9cd4ca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6932464147349150875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7541014464226138867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29815f74d7ebee749bf8e6e2d0539772, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Types:
+  - {fileID: 11400000, guid: 9f660a33445e6d3458da016eadc27b88, type: 2}
 --- !u!114 &8111733277275277981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1148,8 +1163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2b73341be20ef3469a5601f9db37284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _intentIcon: {fileID: 9192077053828071500}
-  _intentTextValue: {fileID: 6390928131180030556}
   _healthTextValue: {fileID: 4762359086143478270}
   _healthBar: {fileID: 6238703001089567884}
   _armorCanvas: {fileID: 271633834053490929}
@@ -1157,6 +1170,8 @@ MonoBehaviour:
   _modifiersCanvas: {fileID: 8914714072046091872}
   _modifierTemplate: {fileID: 4098821402601514923, guid: 6d9281ec7a230ca4095d512ef35ca140,
     type: 3}
+  _intentIcon: {fileID: 9192077053828071500}
+  _intentTextValue: {fileID: 6390928131180030556}
 --- !u!1 &8067165099204999714
 GameObject:
   m_ObjectHideFlags: 0

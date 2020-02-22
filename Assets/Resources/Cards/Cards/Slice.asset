@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b314dfc3a74d51f40a91117e38b5364b, type: 3}
-  m_Name: DragonEye
+  m_Name: Slice
   m_EditorClassIdentifier: 
-  m_Title: Dragon eye
-  m_Icon: {fileID: 21300000, guid: 55cf16314200d80489d18c39490cd292, type: 3}
-  m_ManaCost: 0
-  m_CastRange: 3
-  m_CastArea: {fileID: 11400000, guid: 67602f6fb9407784ab4eb8032f888aa0, type: 2}
-  m_CastAreaSize: 0
+  m_Title: Slice
+  m_Icon: {fileID: 21300000, guid: 5fc87c4d87e1e8142b37fcd9c0762aab, type: 3}
+  m_ManaCost: 1
+  m_CastRange: 0
+  m_CastArea: {fileID: 11400000, guid: a0383ff32501d2d48b2cc8dc22dbf7b0, type: 2}
+  m_CastAreaSize: 1
   m_OnPlayEffects:
-  - Effect: {fileID: 11400000, guid: d91804248dd9630408b4a8415e328546, type: 2}
-    Value: 1
+  - Effect: {fileID: 11400000, guid: 81e798f53ef291841bcb99155ad45cec, type: 2}
+    Value: 4

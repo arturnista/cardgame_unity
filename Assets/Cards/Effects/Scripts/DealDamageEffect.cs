@@ -6,15 +6,13 @@ using UnityEngine;
 public class DealDamageEffect : BaseCardEffect
 {
 
-    [SerializeField] private int _damage = 5;
-
-    public override void OnTargetPlay(GameObject target)
+    public override void OnTargetPlay(int value, GameObject target)
     {
         IHealth targetHealth = target.GetComponent<IHealth>();
         IModifiersHolder targetModifiers = target.GetComponent<IModifiersHolder>();
         IModifiersHolder damagerModifiers = GameObject.FindObjectOfType<PlayerController>().GetComponent<IModifiersHolder>();
 
-        Damage damage = DamageCalculator.DealDamage(_damage, damagerModifiers, targetHealth, targetModifiers);
+        Damage damage = DamageCalculator.DealDamage(value, damagerModifiers, targetHealth, targetModifiers);
 
         targetHealth.DealDamage(damage);
     }

@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d6d319fe094ea94da37619f418e6d7b, type: 3}
-  m_Name: 8DamageEffect
+  m_Name: DealDamageEffect
   m_EditorClassIdentifier: 
-  m_Description: Deal 8 damage
-  _damage: 8
+  m_Description: Deal {0} damage
+  m_CastLayer:
+  - {fileID: 11400000, guid: 9f660a33445e6d3458da016eadc27b88, type: 2}
+  _damage: 1

@@ -2,6 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class CardEffectItem
+{
+
+    public BaseCardEffect Effect;
+    public int Value;
+
+}
+
 [CreateAssetMenu(menuName="Cards/New Card")]
 public class Card : ScriptableObject
 {
@@ -27,8 +36,8 @@ public class Card : ScriptableObject
 
     [Header("Effects")]
     [Tooltip("OnPlay Card Effects are actions that the card will do when Played")]
-    [SerializeField] protected List<BaseCardEffect> m_OnPlayEffects = default;
-    public List<BaseCardEffect> OnPlayEffects { get => m_OnPlayEffects; protected set => m_OnPlayEffects = value; }
+    [SerializeField] protected List<CardEffectItem> m_OnPlayEffects = default;
+    public List<CardEffectItem> OnPlayEffects { get => m_OnPlayEffects; protected set => m_OnPlayEffects = value; }
 
     public string Description {
         get 
@@ -36,8 +45,8 @@ public class Card : ScriptableObject
             string description = "";
             foreach (var item in OnPlayEffects)
             {
-                if (description.Length > 0)description += ". ";
-                description += item.Description;
+                if (description.Length > 0) description += ". ";
+                description += item.Effect.GetDescription(item.Value);
             }
 
             return description;
@@ -47,9 +56,9 @@ public class Card : ScriptableObject
     public void Play(Vector3 point, Vector3 casterPosition)
     {
         List<Vector3> castPosition = GetAreaOfEffect(point, casterPosition);
-        foreach (BaseCardEffect effect in OnPlayEffects)
+        foreach (CardEffectItem item in OnPlayEffects)
         {
-            effect.OnPlay(castPosition);
+            item.Effect.OnPlay(item.Value, castPosition);
         }
     }
 
