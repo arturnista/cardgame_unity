@@ -5029,12 +5029,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1709270717349390482, guid: aa872e111a9089642ae60798cb8c973f,
         type: 3}
-      propertyPath: m_SizeDelta.y
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1709270717349390482, guid: aa872e111a9089642ae60798cb8c973f,
         type: 3}
-      propertyPath: m_SizeDelta.x
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1709270717866932096, guid: aa872e111a9089642ae60798cb8c973f,

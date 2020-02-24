@@ -47,6 +47,7 @@ public class GameController : MonoBehaviour
     private CardSelection m_SelectedCard;
     public Card SelectedCard { get => m_SelectedCard?.Card; }
 
+    private bool _isMoving = false;
     private bool _selectedCardThisFrame = false;
     private Vector3 _lastMousePosition;
 
@@ -128,6 +129,11 @@ public class GameController : MonoBehaviour
         StartPlayerTurn();
     }
 
+    public void SelectMoving()
+    {
+        _isMoving = true;
+    }
+
     public void SelectCard(int index, Card card, UICardView cardView)
     {
         if (card.ManaCost > _playerEntity.PlayerHealth.ManaAmount)
@@ -162,9 +168,18 @@ public class GameController : MonoBehaviour
             _playerEntity.PlayerDeck.PlayCard(m_SelectedCard.Index, point);
             DeselectCard();
         }
-        else
+        else if (_isMoving)
         {
+            float distance = Vector3.Distance(_playerEntity.transform.position, point);
+            int manaCost = Mathf.RoundToInt(distance / 3);
+            if (manaCost > _playerEntity.PlayerHealth.ManaAmount)
+            {
+                DebugText.ShowText("NOT ENOUGH MANA");
+                return;
+            }
+            _playerEntity.PlayerHealth.ManaAmount -=  manaCost;
             _playerEntity.Movement.MoveTo(point);
+            _isMoving = false;
         }
     }
 
