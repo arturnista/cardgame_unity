@@ -106,4 +106,19 @@ public class PlayerDeck : MonoBehaviour
         }
     }
 
+    public void AddCardToHand(Card card)
+    {
+        m_Hand.Add(card);
+    }
+
+    public void AddCardToDraw(Card card)
+    {
+        m_Draw.Insert(Random.Range(0, m_Draw.Count), card);
+    }
+
+    public void AddCardToDicard(Card card)
+    {
+        m_Discard.Add(card);
+    }
+
 }

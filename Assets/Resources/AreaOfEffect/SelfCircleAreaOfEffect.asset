@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 799719bb204efbc48bbb1c866d41e35d, type: 3}
-  m_Name: CircleAreaOfEffect
+  m_Name: SelfCircleAreaOfEffect
   m_EditorClassIdentifier: 
-  _castSelf: 0
+  _castSelf: 1

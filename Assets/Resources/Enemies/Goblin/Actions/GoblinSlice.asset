@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: GoblinSlice
   m_EditorClassIdentifier: 
   m_AreaOfEffect: {fileID: 11400000, guid: c7464549803ec7940856cf93318783f6, type: 2}
-  m_AreaOfEffectValue: 1
+  m_AreaOfEffectValue: 2
   m_CastLayer:
   - {fileID: 11400000, guid: 665eb354e9424394fa36286045d057f9, type: 2}
   m_IntentIcon: {fileID: 21300000, guid: 025c4c323a591dc45bfec07061662c22, type: 3}
   m_IntentIconColor: {r: 1, g: 1, b: 1, a: 1}
-  _damage: 5
+  _damage: 15

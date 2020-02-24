@@ -16,7 +16,7 @@ MonoBehaviour:
   m_Icon: {fileID: 21300000, guid: 5fc87c4d87e1e8142b37fcd9c0762aab, type: 3}
   m_ManaCost: 1
   m_CastRange: 0
-  m_CastArea: {fileID: 11400000, guid: 2ad7df1a11ee7ef499d8ce5c6a40c82e, type: 2}
+  m_CastArea: {fileID: 11400000, guid: 76d82355041892547b90b3c8c5af17dc, type: 2}
   m_CastAreaSize: 1
   m_OnPlayEffects:
   - Effect: {fileID: 11400000, guid: 81e798f53ef291841bcb99155ad45cec, type: 2}
