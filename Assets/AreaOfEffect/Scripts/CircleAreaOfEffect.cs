@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName="Cards/Area/Self")]
-public class SelfCardArea : BaseCardArea
+[CreateAssetMenu(menuName="Area of effect/Circle", fileName="CircleAreaOfEffect")]
+public class CircleAreaOfEffect : BaseAreaOfEffect
 {
 
     public override List<Vector3> GetAreaOfEffect(Vector3 castPosition, Vector3 casterPosition, int value)
@@ -13,7 +13,7 @@ public class SelfCardArea : BaseCardArea
         {
             for (int y = -value; y <= value; y++)
             {
-                result.Add(casterPosition + new Vector3(x, y));
+                result.Add(castPosition + new Vector3(x, y));
             }
         }
         return result;

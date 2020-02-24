@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName="Cards/Area/All Enemies")]
-public class AllEnemiesCardArea : BaseCardArea
+[CreateAssetMenu(menuName="Area of effect/All Tiles", fileName="AllTilesAreaOfEffect")]
+public class AllTilesAreaOfEffect : BaseAreaOfEffect
 {
 
     public override List<Vector3> GetAreaOfEffect(Vector3 castPosition, Vector3 casterPosition, int value)

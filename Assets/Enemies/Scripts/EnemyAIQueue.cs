@@ -4,19 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAIQueue : BaseEnemyAI
 {
 
     [SerializeField] private List<BaseEnemyAction> _actions = default;
     private Queue<BaseEnemyAction> _actionQueue;
 
-    private EnemyHealth _enemyHealth;
-    
-    public BaseEnemyAction NextAction { get => _actionQueue.Peek(); }
-
-    void Awake()
+    protected override void Awake()
     {
-        _enemyHealth = GetComponent<EnemyHealth>();
+        base.Awake();
         _actionQueue = new Queue<BaseEnemyAction>();
 
         List<BaseEnemyAction> _enemiesAux = new List<BaseEnemyAction>(_actions);
@@ -27,13 +23,11 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    public void Execute(PlayerEntity playerEntity, EnemiesController enemiesController, GameObject self)
+    protected override BaseEnemyAction DefineNextAction()
     {
-        if (_enemyHealth.IsDead) return;
-        
-        BaseEnemyAction action = _actionQueue.Dequeue();
-        action.Execute(playerEntity, enemiesController, self);
-        _actionQueue.Enqueue(action);
+        BaseEnemyAction nextAction = _actionQueue.Dequeue();
+        _actionQueue.Enqueue(nextAction);
+        return nextAction;
     }
 
 }

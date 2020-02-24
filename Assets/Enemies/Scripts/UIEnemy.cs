@@ -10,13 +10,15 @@ public class UIEnemy : UIEntity
     [Header("AI")]
     [SerializeField] private Image _intentIcon = default;
     [SerializeField] private TextMeshProUGUI _intentTextValue = default;
+    [SerializeField] private GameObject _damageMarkerPrefab = default;
+    [SerializeField] private GameObject _damageMarkerParent = default;
 
-    private EnemyAI _enemyAI;
+    private BaseEnemyAI _enemyAI;
 
     protected override void Awake()
     {
         base.Awake();
-        _enemyAI = GetComponent<EnemyAI>();
+        _enemyAI = GetComponent<BaseEnemyAI>();
     }
 
     public override void UpdateUI()
@@ -37,6 +39,15 @@ public class UIEnemy : UIEntity
         else
         {
             _intentTextValue.text = "";
+        }
+
+        foreach (Transform child in _damageMarkerParent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Vector3 pos in intent.Positions)
+        {
+            Instantiate(_damageMarkerPrefab, pos, Quaternion.identity, _damageMarkerParent.transform);
         }
     }
 

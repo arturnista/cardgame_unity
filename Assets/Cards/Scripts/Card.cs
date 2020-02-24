@@ -28,8 +28,8 @@ public class Card : ScriptableObject
     [SerializeField] protected int m_CastRange = default;
     public int CastRange { get => m_CastRange; protected set => m_CastRange = value; }
 
-    [SerializeField] protected BaseCardArea m_CastArea = default;
-    public BaseCardArea CastArea { get => m_CastArea; protected set => m_CastArea = value; }
+    [SerializeField] protected BaseAreaOfEffect m_CastArea = default;
+    public BaseAreaOfEffect CastArea { get => m_CastArea; protected set => m_CastArea = value; }
 
     [SerializeField] protected int m_CastAreaSize = default;
     public int CastAreaSize { get => m_CastAreaSize; protected set => m_CastAreaSize = value; }

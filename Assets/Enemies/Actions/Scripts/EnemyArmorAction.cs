@@ -9,9 +9,9 @@ public class EnemyArmorAction : BaseEnemyAction
     [Header("Armor")]
     [SerializeField] private int _armor = default;
 
-    public override void Execute(PlayerEntity playerEntity, EnemiesController enemiesController, GameObject self)
+    public override void ExecutePerTarget(GameObject target)
     {
-        IHealth targetHealth = self.GetComponent<IHealth>();
+        IHealth targetHealth = target.GetComponent<IHealth>();
         targetHealth.Armor += _armor;
     }
 

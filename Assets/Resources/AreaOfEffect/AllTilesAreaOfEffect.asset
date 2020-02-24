@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c6bea5cd8ec93f43bd4324470e54694, type: 3}
-  m_Name: CircleCardArea
+  m_Script: {fileID: 11500000, guid: 41425c348df28d14688a08c3e665f956, type: 3}
+  m_Name: AllTilesAreaOfEffect
   m_EditorClassIdentifier: 

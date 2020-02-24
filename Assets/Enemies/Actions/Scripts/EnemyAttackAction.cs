@@ -9,11 +9,14 @@ public class EnemyAttackAction : BaseEnemyAction
     [Header("Attack")]
     [SerializeField] private int _damage = default;
 
-    public override void Execute(PlayerEntity playerEntity, EnemiesController enemiesController, GameObject self)
+    public override void ExecutePerTarget(GameObject target)
     {
-        IHealth targetHealth = playerEntity.Health;
-        IModifiersHolder targetModifiers = playerEntity.ModifiersHolder;
-        IModifiersHolder selfModifiers = self.GetComponent<IModifiersHolder>();
+        Entity entityTarget = target.GetComponent<Entity>();
+        Debug.Log(target.name);
+
+        IHealth targetHealth = entityTarget.Health;
+        IModifiersHolder targetModifiers = entityTarget.ModifiersHolder;
+        IModifiersHolder selfModifiers = _self.GetComponent<IModifiersHolder>();
 
         Damage damage = DamageCalculator.DealDamage(_damage, selfModifiers, targetHealth, targetModifiers);
 
@@ -22,7 +25,9 @@ public class EnemyAttackAction : BaseEnemyAction
 
     public override EnemyIntent GetIntent()
     {
-        return new EnemyIntent(m_IntentIcon, m_IntentIconColor, _damage);
+        EnemyIntent intent = base.GetIntent();
+        intent.Value = _damage;
+        return intent;
     }
 
 }

@@ -60,7 +60,7 @@ public class EnemiesController : MonoBehaviour
         for (int i = m_Enemies.Count - 1; i >= 0; i--)
         {
             GameObject enemy = m_Enemies[i];
-            enemy.GetComponent<EnemyAI>().Execute(playerEntity, this, enemy);
+            enemy.GetComponent<BaseEnemyAI>().Execute();
         }
 
         _gameController.EndEnemiesTurn();
@@ -75,9 +75,11 @@ public class EnemiesController : MonoBehaviour
             enemy.GetComponent<EntityModifiers>().EndTurn();
         }
 
+        PlayerEntity playerEntity = GameObject.FindObjectOfType<PlayerEntity>();
         for (int i = m_Enemies.Count - 1; i >= 0; i--)
         {
             GameObject enemy = m_Enemies[i];
+            enemy.GetComponent<BaseEnemyAI>().PrepareNextAction();
             enemy.GetComponent<UIEnemy>().UpdateUI();
         }
 
