@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName="Cards/Modifiers/Empower modifier")]
-public class EmpowerModifier : BaseCardModifier
+public class EmpowerModifier : BaseModifier
 {
 
     public override bool OnEndTurn(GameObject self)

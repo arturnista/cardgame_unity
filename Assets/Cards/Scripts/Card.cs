@@ -15,6 +15,9 @@ public class CardEffectItem
 public class Card : ScriptableObject
 {
 
+    [SerializeField] protected string m_ID = default;
+    public string ID { get => m_ID; protected set => m_ID = value; }
+
     [SerializeField] protected string m_Title = default;
     public string Title { get => m_Title; protected set => m_Title = value; }
 

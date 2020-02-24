@@ -6,7 +6,7 @@ using UnityEngine;
 public interface IModifiersHolder
 {
 
-    Dictionary<Type, BaseCardModifier> Modifiers { get; }
-    void AddModifier(BaseCardModifier modifier, int amount);
+    Dictionary<Type, BaseModifier> Modifiers { get; }
+    void AddModifier(BaseModifier modifier, int amount);
     
 }

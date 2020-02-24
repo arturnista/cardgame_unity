@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseCardModifier : ScriptableObject
+public abstract class BaseModifier : ScriptableObject
 {
 
     [SerializeField] private string m_Title = default;
@@ -17,7 +17,7 @@ public abstract class BaseCardModifier : ScriptableObject
     protected int m_Amount;
     public int Amount { get => m_Amount; }
 
-    public BaseCardModifier Clone()
+    public BaseModifier Clone()
     {
         return ScriptableObject.Instantiate(this);
     }

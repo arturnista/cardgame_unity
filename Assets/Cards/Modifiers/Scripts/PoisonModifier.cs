@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName="Cards/Modifiers/Poison modifier")]
-public class PoisonModifier : BaseCardModifier
+public class PoisonModifier : BaseModifier
 {
 
     public override bool OnStartTurn(GameObject self)

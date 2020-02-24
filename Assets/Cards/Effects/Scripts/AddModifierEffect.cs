@@ -6,7 +6,7 @@ using UnityEngine;
 public class AddModifierEffect : BaseCardEffect
 {
 
-    [SerializeField] private BaseCardModifier _modifier = default;
+    [SerializeField] private BaseModifier _modifier = default;
 
     public override void OnTargetPlay(GameObject target, int[] values)
     {

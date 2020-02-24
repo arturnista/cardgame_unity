@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName="Cards/Modifiers/Vulnerable modifier")]
-public class VulnerableModifier : BaseCardModifier
+public class VulnerableModifier : BaseModifier
 {
 
     [SerializeField] [Range(1f, 2f)] private float _reduceAmount = default;

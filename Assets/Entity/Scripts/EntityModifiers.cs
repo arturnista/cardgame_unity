@@ -9,15 +9,15 @@ public class EntityModifiers : MonoBehaviour, IModifiersHolder
     public delegate void ChangeModifiersHandler(GameObject enemy);
     public ChangeModifiersHandler OnChangeModifiers;
 
-    private Dictionary<Type, BaseCardModifier> _modifiers;
-    public Dictionary<Type, BaseCardModifier> Modifiers { get => _modifiers; }
+    private Dictionary<Type, BaseModifier> _modifiers;
+    public Dictionary<Type, BaseModifier> Modifiers { get => _modifiers; }
 
     void Awake()
     {
-        _modifiers = new Dictionary<Type, BaseCardModifier>();
+        _modifiers = new Dictionary<Type, BaseModifier>();
     }
 
-    public void AddModifier(BaseCardModifier modifier, int amount)
+    public void AddModifier(BaseModifier modifier, int amount)
     {
         Type key = modifier.GetType();
         if (_modifiers.ContainsKey(key))
@@ -26,7 +26,7 @@ public class EntityModifiers : MonoBehaviour, IModifiersHolder
         }
         else
         {
-            BaseCardModifier mod = modifier.Clone();
+            BaseModifier mod = modifier.Clone();
             mod.Construct(amount);
             _modifiers.Add(mod.GetType(), mod);
         }
@@ -39,7 +39,7 @@ public class EntityModifiers : MonoBehaviour, IModifiersHolder
 
     public void StartTurn()
     {
-        Dictionary<Type, BaseCardModifier> modifiersAux = new Dictionary<Type, BaseCardModifier>(_modifiers);
+        Dictionary<Type, BaseModifier> modifiersAux = new Dictionary<Type, BaseModifier>(_modifiers);
         foreach (var key in modifiersAux.Keys)
         {
             bool finished = modifiersAux[key].OnStartTurn(gameObject);
@@ -57,7 +57,7 @@ public class EntityModifiers : MonoBehaviour, IModifiersHolder
 
     public void EndTurn()
     {
-        Dictionary<Type, BaseCardModifier> modifiersAux = new Dictionary<Type, BaseCardModifier>(_modifiers);
+        Dictionary<Type, BaseModifier> modifiersAux = new Dictionary<Type, BaseModifier>(_modifiers);
         foreach (var key in modifiersAux.Keys)
         {
             bool finished = modifiersAux[key].OnEndTurn(gameObject);
