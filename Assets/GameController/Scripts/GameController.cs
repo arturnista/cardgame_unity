@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 class CardSelection
 {
     
-    public CardSelection(int index, Card card, UICardView uiCard)
+    public CardSelection(int index, BaseCard card, UICardView uiCard)
     {
         UICard = uiCard;
         Card = card;
@@ -17,7 +17,7 @@ class CardSelection
     }
 
     public UICardView UICard;
-    public Card Card;
+    public BaseCard Card;
     public int Index;
 
     public void Deselect()
@@ -45,7 +45,7 @@ public class GameController : MonoBehaviour
     private Camera _camera;
 
     private CardSelection m_SelectedCard;
-    public Card SelectedCard { get => m_SelectedCard?.Card; }
+    public BaseCard SelectedCard { get => m_SelectedCard?.Card; }
 
     private bool _isMoving = false;
     private bool _selectedCardThisFrame = false;
@@ -134,7 +134,7 @@ public class GameController : MonoBehaviour
         _isMoving = true;
     }
 
-    public void SelectCard(int index, Card card, UICardView cardView)
+    public void SelectCard(int index, BaseCard card, UICardView cardView)
     {
         if (card.ManaCost > _playerEntity.PlayerHealth.ManaAmount)
         {

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a0453c4e627a34aad94affd0dd43ce, type: 3}
+  m_Name: SkullSplitterCard
+  m_EditorClassIdentifier: 
+  m_ID: card:skullspilitter
+  m_Title: Skull Splitter
+  m_Icon: {fileID: 21300000, guid: fc5660697aa472747ac6b54dc07751de, type: 3}
+  m_ManaCost: 3
+  m_CastLayer:
+  - {fileID: 11400000, guid: 9f660a33445e6d3458da016eadc27b88, type: 2}
+  m_CastRange: 0
+  m_CastArea: {fileID: 11400000, guid: 275e5e3cca5394f4b98340ce313feb2c, type: 2}
+  m_CastAreaSize: 1
+  m_ExaustOnPlay: 1
+  m_Damage: 30
+  m_CardToAdd: {fileID: 11400000, guid: 79197069626a2a2478f89e1b207bf53d, type: 2}

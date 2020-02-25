@@ -1,9 +1,8 @@
 fileFormatVersion: 2
-guid: 4c4a9795331dc1840a944f680c3b1f2e
+guid: c2b2d938836f5914589c3c68c46698bf
 TextureImporter:
   fileIDToRecycleName:
-    21300000: ManaIcon_0
-    21300002: ManaIcon_1
+    2186277476908879412: ImportLogs
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -42,12 +41,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 90
+  spritePixelsToUnits: 1000
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -95,31 +94,11 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: ManaIcon_1
-      rect:
-        serializedVersion: 2
-        x: 100
-        y: 12
-        width: 68
-        height: 62
-      alignment: 9
-      pivot: {x: 0.48653525, y: 0.44866535}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 81e0e30a2a546494a92fd938921912d5
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 351c7ace3940f95478740d2b696ee1f9
+    spriteID: 13caba63e134c5f48bcd5ff4292441cb
     vertices: []
     indices: 
     edges: []

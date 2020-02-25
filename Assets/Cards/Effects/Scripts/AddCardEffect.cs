@@ -2,26 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName="Cards/Effects/Add card")]
 public class AddCardEffect : BaseCardEffect
 {
 
-    public enum PositionToAdd
+    public enum PileToAdd
     {
         Draw,
         Discard,
         Hand
     }
 
-    [SerializeField] private Card _cardToAdd = default;
-    [SerializeField] private PositionToAdd _addTo = PositionToAdd.Draw;
+    private BaseCard _cardToAdd = default;
+    private PileToAdd _addTo = PileToAdd.Draw;
 
-    public override void OnTargetPlay(GameObject target, int[] values)
+    public AddCardEffect(List<EntityType> castLayer, BaseCard card, PileToAdd pile) : base(castLayer)
+    {
+        _cardToAdd = card;
+        _addTo = pile;
+    }
+
+    public override void OnPlay(BaseCard card, List<Vector3> castPositions)
     {
         PlayerEntity playerEntity = GameObject.FindObjectOfType<PlayerEntity>();
-        if (_addTo == PositionToAdd.Draw) playerEntity.PlayerDeck.AddCardToDraw(_cardToAdd);
-        else if (_addTo == PositionToAdd.Discard) playerEntity.PlayerDeck.AddCardToDicard(_cardToAdd);
-        else if (_addTo == PositionToAdd.Hand) playerEntity.PlayerDeck.AddCardToHand(_cardToAdd);
+        if (_addTo == PileToAdd.Draw) playerEntity.PlayerDeck.AddCardToDraw(_cardToAdd);
+        else if (_addTo == PileToAdd.Discard) playerEntity.PlayerDeck.AddCardToDicard(_cardToAdd);
+        else if (_addTo == PileToAdd.Hand) playerEntity.PlayerDeck.AddCardToHand(_cardToAdd);
+    }
+
+    public override string GetDescription()
+    {
+        string addToString = "";
+        switch (_addTo)
+        {
+            case PileToAdd.Discard:
+                addToString = "Discard pile";
+                break;
+            case PileToAdd.Draw:
+                addToString = "Draw pile";
+                break;
+            case PileToAdd.Hand:
+                addToString = "Hand";
+                break;
+        }
+        return string.Format("Add a {0} to your {1}", _cardToAdd.Title, addToString);
     }
 
 }

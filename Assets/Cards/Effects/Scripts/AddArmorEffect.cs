@@ -2,13 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName="Cards/Effects/Add Armor")]
 public class AddArmorEffect : BaseCardEffect
 {
 
-    public override void OnTargetPlay(GameObject target, int[] values)
+    private int _amount;
+
+    public AddArmorEffect(List<EntityType> castLayer, int amount) : base(castLayer)
     {
-        target.GetComponent<Entity>().Health.Armor += values[0];
+        _amount = amount;
+    }
+
+    public override void OnTargetPlay(GameObject target)
+    {
+        target.GetComponent<Entity>().Health.Armor += _amount;
+    }
+
+    public override string GetDescription()
+    {
+        return string.Format("Add {0} armor", _amount);
     }
 
 }

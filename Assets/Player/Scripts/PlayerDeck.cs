@@ -7,14 +7,17 @@ public class PlayerDeck : MonoBehaviour
     
     [SerializeField] private CardDeck _deck = default;
 
-    private List<Card> m_Draw;
-    public List<Card> Draw { get => m_Draw; }
+    private List<BaseCard> m_Draw;
+    public List<BaseCard> Draw { get => m_Draw; }
     
-    private List<Card> m_Hand;
-    public List<Card> Hand { get => m_Hand; }
+    private List<BaseCard> m_Hand;
+    public List<BaseCard> Hand { get => m_Hand; }
     
-    private List<Card> m_Discard;
-    public List<Card> Discard { get => m_Discard; }
+    private List<BaseCard> m_Discard;
+    public List<BaseCard> Discard { get => m_Discard; }
+    
+    private List<BaseCard> m_Exaust;
+    public List<BaseCard> Exaust { get => m_Exaust; }
 
     private GameController _gameController;
     private PlayerHealth _playerHealth;
@@ -24,9 +27,10 @@ public class PlayerDeck : MonoBehaviour
         _gameController = GameObject.FindObjectOfType<GameController>();
         _playerHealth = GetComponent<PlayerHealth>();
 
-        m_Draw = new List<Card>();
-        m_Hand = new List<Card>();
-        m_Discard = new List<Card>(_deck.Cards);    
+        m_Draw = new List<BaseCard>();
+        m_Hand = new List<BaseCard>();
+        m_Exaust = new List<BaseCard>();
+        m_Discard = new List<BaseCard>(_deck.Cards);    
     }
 
     public void StartGame()
@@ -48,7 +52,7 @@ public class PlayerDeck : MonoBehaviour
 
     public void ShowDrawPile()
     {
-        List<Card> drawShuffled = new List<Card>(m_Draw);
+        List<BaseCard> drawShuffled = new List<BaseCard>(m_Draw);
         drawShuffled.Shuffle();
         UICardList.Main.Show("Draw pile", drawShuffled, KeyCode.A);
     }
@@ -60,7 +64,7 @@ public class PlayerDeck : MonoBehaviour
 
     public void PlayCard(int index, Vector3 point)
     {
-        Card card = m_Hand[index];
+        BaseCard card = m_Hand[index];
         if (card.ManaCost > _playerHealth.ManaAmount)
         {
             DebugText.ShowText("NOT ENOUGH MANA");
@@ -72,7 +76,14 @@ public class PlayerDeck : MonoBehaviour
         card.Play(point, transform.position);
 
         m_Hand.RemoveAt(index);
-        m_Discard.Add(card);
+        if (card.ExaustOnPlay)
+        {
+            m_Exaust.Add(card);
+        }
+        else
+        {
+            m_Discard.Add(card);
+        }
 
         _gameController.DrawCards();
     }
@@ -106,17 +117,17 @@ public class PlayerDeck : MonoBehaviour
         }
     }
 
-    public void AddCardToHand(Card card)
+    public void AddCardToHand(BaseCard card)
     {
         m_Hand.Add(card);
     }
 
-    public void AddCardToDraw(Card card)
+    public void AddCardToDraw(BaseCard card)
     {
         m_Draw.Insert(Random.Range(0, m_Draw.Count), card);
     }
 
-    public void AddCardToDicard(Card card)
+    public void AddCardToDicard(BaseCard card)
     {
         m_Discard.Add(card);
     }

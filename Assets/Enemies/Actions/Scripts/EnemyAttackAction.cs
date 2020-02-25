@@ -12,7 +12,6 @@ public class EnemyAttackAction : BaseEnemyAction
     public override void ExecutePerTarget(GameObject target)
     {
         Entity entityTarget = target.GetComponent<Entity>();
-        Debug.Log(target.name);
 
         IHealth targetHealth = entityTarget.Health;
         IModifiersHolder targetModifiers = entityTarget.ModifiersHolder;

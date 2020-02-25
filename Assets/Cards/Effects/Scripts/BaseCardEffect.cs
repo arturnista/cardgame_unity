@@ -3,15 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseCardEffect : ScriptableObject
+public abstract class BaseCardEffect
 {
     
-    [SerializeField] [TextArea] protected string m_Description = default;
+    protected string m_Description = default;
 
-    [SerializeField] protected List<EntityType> m_CastLayer = default;
+    protected List<EntityType> m_CastLayer = default;
     public List<EntityType> CastLayer { get => m_CastLayer; protected set => m_CastLayer = value; }
 
-    public virtual void OnPlay(List<Vector3> castPositions, int[] values)
+    protected BaseCardEffect(List<EntityType> castLayer)
+    {
+        m_CastLayer = castLayer;
+    }
+
+    public virtual void OnPlay(BaseCard card, List<Vector3> castPositions)
     {
 
         GameController gameController = DI.Get<GameController>();
@@ -21,17 +26,17 @@ public abstract class BaseCardEffect : ScriptableObject
             EntityTypeHolder typeHolder = target.GetComponent<EntityTypeHolder>();
             if (typeHolder.IsType(m_CastLayer))
             {
-                OnTargetPlay(target, values);
+                OnTargetPlay(target);
             }
         }
 
     }
     
-    public abstract void OnTargetPlay(GameObject target, int[] values);
-
-    public string GetDescription(int[] values)
+    public virtual void OnTargetPlay(GameObject target)
     {
-        return string.Format(m_Description, values.Select(x=>x.ToString()).ToArray());
+
     }
+
+    public abstract string GetDescription();
 
 }

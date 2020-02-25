@@ -41,7 +41,7 @@ public class UICardList : MonoBehaviour
         Hide();
     }
 
-    public void Show(string title, List<Card> cards, KeyCode backHotkey)
+    public void Show(string title, List<BaseCard> cards, KeyCode backHotkey)
     {
         _backHotkey = backHotkey;
         _titleText.text = title;
@@ -51,7 +51,7 @@ public class UICardList : MonoBehaviour
         if (cards.Count > 0) 
         {
             _emptyContentCanvas.gameObject.SetActive(false);
-            foreach (Card card in cards)
+            foreach (BaseCard card in cards)
             {
                 UICardView cardView = Instantiate(_cardPrefab, _contentCanvas.transform).GetComponent<UICardView>();
                 cardView.Construct(card);
