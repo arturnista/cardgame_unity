@@ -5,6 +5,7 @@ using UnityEngine;
 public class GoblinAI : BaseEnemyAI
 {
     
+    [SerializeField] private float _distanceToRange = 2f;
     [SerializeField] private BaseEnemyAction _rangeAttack = default;
     [SerializeField] private BaseEnemyAction _meleeAttack = default;
     [SerializeField] private BaseEnemyAction _strongShieldAttack = default;
@@ -12,7 +13,7 @@ public class GoblinAI : BaseEnemyAI
     
     protected override BaseEnemyAction DefineNextAction()
     {
-        if (Vector3.Distance(_playerEntity.transform.position, transform.position) > 2f)
+        if (Vector3.Distance(_playerEntity.transform.position, transform.position) > _distanceToRange)
         {
             return _rangeAttack;
         }
