@@ -17,6 +17,7 @@ public class RagnarokCard : BaseCard
         m_OnPlayEffects = new List<BaseCardEffect>();
         m_OnPlayEffects.Add(new DealDamageEffect(m_CastLayer, m_Damage));
         m_OnPlayEffects.Add(new AddCardEffect(m_CastLayer, m_CardToAdd, AddCardEffect.PileToAdd.Draw));
+        m_OnPlayEffects.Add(new ExaustCardEffect(m_CastLayer));
     }
 
 }

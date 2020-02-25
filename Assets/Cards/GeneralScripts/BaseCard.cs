@@ -32,7 +32,7 @@ public abstract class BaseCard : ScriptableObject
 
     [Header("Modifiers")]
     [SerializeField] protected bool m_ExaustOnPlay = default;
-    public bool ExaustOnPlay { get => m_ExaustOnPlay; protected set => m_ExaustOnPlay = value; }
+    public bool ExaustOnPlay { get => m_ExaustOnPlay; set => m_ExaustOnPlay = value; }
 
     protected List<BaseCardEffect> m_OnPlayEffects = default;
     public List<BaseCardEffect> OnPlayEffects { get => m_OnPlayEffects; protected set => m_OnPlayEffects = value; }

@@ -21,6 +21,6 @@ MonoBehaviour:
   m_CastRange: 0
   m_CastArea: {fileID: 11400000, guid: 275e5e3cca5394f4b98340ce313feb2c, type: 2}
   m_CastAreaSize: 1
-  m_ExaustOnPlay: 1
+  m_ExaustOnPlay: 0
   m_Damage: 30
   m_CardToAdd: {fileID: 11400000, guid: 79197069626a2a2478f89e1b207bf53d, type: 2}

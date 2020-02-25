@@ -11,7 +11,7 @@ public class ExaustCardEffect : BaseCardEffect
 
     public override void OnPlay(BaseCard card, List<Vector3> castPositions)
     {
-        PlayerEntity playerEntity = GameObject.FindObjectOfType<PlayerEntity>();
+        card.ExaustOnPlay = true;
     }
 
     public override string GetDescription()
