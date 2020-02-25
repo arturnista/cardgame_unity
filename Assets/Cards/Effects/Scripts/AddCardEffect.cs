@@ -5,17 +5,10 @@ using UnityEngine;
 public class AddCardEffect : BaseCardEffect
 {
 
-    public enum PileToAdd
-    {
-        Draw,
-        Discard,
-        Hand
-    }
+    private string _cardToAdd = default;
+    private PlayerDeck.DeckPiles _addTo = PlayerDeck.DeckPiles.Draw;
 
-    private BaseCard _cardToAdd = default;
-    private PileToAdd _addTo = PileToAdd.Draw;
-
-    public AddCardEffect(List<EntityType> castLayer, BaseCard card, PileToAdd pile) : base(castLayer)
+    public AddCardEffect(List<EntityType> castLayer, string card, PlayerDeck.DeckPiles pile) : base(castLayer)
     {
         _cardToAdd = card;
         _addTo = pile;
@@ -24,9 +17,9 @@ public class AddCardEffect : BaseCardEffect
     public override void OnPlay(BaseCard card, List<Vector3> castPositions)
     {
         PlayerEntity playerEntity = GameObject.FindObjectOfType<PlayerEntity>();
-        if (_addTo == PileToAdd.Draw) playerEntity.PlayerDeck.AddCardToDraw(_cardToAdd);
-        else if (_addTo == PileToAdd.Discard) playerEntity.PlayerDeck.AddCardToDicard(_cardToAdd);
-        else if (_addTo == PileToAdd.Hand) playerEntity.PlayerDeck.AddCardToHand(_cardToAdd);
+        if (_addTo == PlayerDeck.DeckPiles.Draw) playerEntity.PlayerDeck.AddCardToDraw(_cardToAdd);
+        else if (_addTo == PlayerDeck.DeckPiles.Discard) playerEntity.PlayerDeck.AddCardToDiscard(_cardToAdd);
+        else if (_addTo == PlayerDeck.DeckPiles.Hand) playerEntity.PlayerDeck.AddCardToHand(_cardToAdd);
     }
 
     public override string GetDescription()
@@ -34,17 +27,17 @@ public class AddCardEffect : BaseCardEffect
         string addToString = "";
         switch (_addTo)
         {
-            case PileToAdd.Discard:
+            case PlayerDeck.DeckPiles.Discard:
                 addToString = "Discard pile";
                 break;
-            case PileToAdd.Draw:
+            case PlayerDeck.DeckPiles.Draw:
                 addToString = "Draw pile";
                 break;
-            case PileToAdd.Hand:
+            case PlayerDeck.DeckPiles.Hand:
                 addToString = "Hand";
                 break;
         }
-        return string.Format("Add a {0} to your {1}", _cardToAdd.Title, addToString);
+        return string.Format("Add a {0} to your {1}", DI.Get<CardDatabase>().GetCardTemplate(_cardToAdd).Title, addToString);
     }
 
 }

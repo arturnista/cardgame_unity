@@ -10,7 +10,7 @@ public class SlashCard : BaseCard
     [SerializeField] protected int m_Damage = default;
     public int Damage { get => m_Damage; protected set => m_Damage = value; }
 
-    void OnEnable()
+    public override void Initialize()
     {
         m_OnPlayEffects = new List<BaseCardEffect>();
         m_OnPlayEffects.Add(new DealDamageEffect(m_CastLayer, m_Damage));

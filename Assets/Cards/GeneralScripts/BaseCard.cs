@@ -29,13 +29,11 @@ public abstract class BaseCard : ScriptableObject
 
     [SerializeField] protected int m_CastAreaSize = default;
     public int CastAreaSize { get => m_CastAreaSize; protected set => m_CastAreaSize = value; }
-
-    [Header("Modifiers")]
-    [SerializeField] protected bool m_ExaustOnPlay = default;
-    public bool ExaustOnPlay { get => m_ExaustOnPlay; set => m_ExaustOnPlay = value; }
-
+    
     protected List<BaseCardEffect> m_OnPlayEffects = default;
     public List<BaseCardEffect> OnPlayEffects { get => m_OnPlayEffects; protected set => m_OnPlayEffects = value; }
+
+    protected PlayerEntity _playerEntity;
 
     public string Description {
         get 
@@ -46,27 +44,59 @@ public abstract class BaseCard : ScriptableObject
                 description += item.GetDescription() + "\n";
             }
 
-            if (m_ExaustOnPlay)
+            PlayerDeck.DeckPiles destination = GetDestination();
+            switch (destination)
             {
-                description += "Exaust";
+                case PlayerDeck.DeckPiles.Exaust:
+                    description += "Exaust";
+                    break;
+                case PlayerDeck.DeckPiles.Hand:
+                    description += "Move to hand";
+                    break;
+                case PlayerDeck.DeckPiles.Draw:
+                    description += "Move to draw pile";
+                    break;
             }
 
             return description;
         }
     }
+
+    public void Construct(PlayerEntity playerEntity)
+    {
+        _playerEntity = playerEntity;
+    }
+
+    public abstract void Initialize();
     
-    public void Play(Vector3 point, Vector3 casterPosition)
+    public PlayerDeck.DeckPiles Play(Vector3 point, Vector3 casterPosition)
     {
         List<Vector3> castPosition = GetAreaOfEffect(point, casterPosition);
         foreach (BaseCardEffect item in OnPlayEffects)
         {
             item.OnPlay(this, castPosition);
         }
+        return GetDestination();
+    }
+
+    protected virtual PlayerDeck.DeckPiles GetDestination()
+    {
+        return PlayerDeck.DeckPiles.Discard;
     }
 
     public List<Vector3> GetAreaOfEffect(Vector3 castPosition, Vector3 casterPosition)
     {
         return m_CastArea.GetAreaOfEffect(castPosition, casterPosition, m_CastAreaSize);
+    }
+
+    public void Discard()
+    {
+        _playerEntity.PlayerDeck.MoveCard(this, PlayerDeck.DeckPiles.Discard);   
+    }
+
+    public void Exaust()
+    {
+        _playerEntity.PlayerDeck.MoveCard(this, PlayerDeck.DeckPiles.Exaust);
     }
 
 }

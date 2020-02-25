@@ -26,7 +26,7 @@ Quem faz o controle de turno das cartas (sacar/jogar/descartar) é o **PlayerCon
 Todas as cartas são **Card** (ScriptableObject).  
 Ela possui algumas coisas referentes a carta, como nome, custo, icone, tipo, e o mais importante: Efeitos.  
 Os efeitos são as coisas que as cartas fazem.  
-Cada efeito é um **BaseCardEffect** (ScriptableObject) diferente. Hoje, as cartas só fazem ações no *OnPlay*, mas é bem tranquilo de adicionar ações em coisas coisas (OnDraw, OnDiscart).  
+Cada efeito é um **BaseCardEffect** (ScriptableObject) diferente. Hoje, as cartas só fazem ações no *OnPlay*, mas é bem tranquilo de adicionar ações em coisas coisas (OnDraw, OnDiscard).  
 Os efeitos são, por exemplo: Dar dano. Dar armor. Adicionar modifier. Dar dano em área, etc.    
 
 A descrição da carta é formada pela concatenação das descrições dos efeitos juntos.  

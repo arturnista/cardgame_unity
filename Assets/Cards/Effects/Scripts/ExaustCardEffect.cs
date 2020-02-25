@@ -11,7 +11,8 @@ public class ExaustCardEffect : BaseCardEffect
 
     public override void OnPlay(BaseCard card, List<Vector3> castPositions)
     {
-        card.ExaustOnPlay = true;
+        Debug.Log("Aqui?");
+        card.Exaust();
     }
 
     public override string GetDescription()

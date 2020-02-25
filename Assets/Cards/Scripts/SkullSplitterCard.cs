@@ -9,15 +9,19 @@ public class SkullSplitterCard : BaseCard
     [Header("SkullSplitterCard")]
     [SerializeField] protected int m_Damage = default;
     public int Damage { get => m_Damage; protected set => m_Damage = value; }
-    [SerializeField] protected BaseCard m_CardToAdd = default;
-    public BaseCard CardToAdd { get => m_CardToAdd; protected set => m_CardToAdd = value; }
+    [SerializeField] protected string m_CardToAdd = default;
+    public string CardToAdd { get => m_CardToAdd; protected set => m_CardToAdd = value; }
 
-    void OnEnable()
+    public override void Initialize()
     {
         m_OnPlayEffects = new List<BaseCardEffect>();
         m_OnPlayEffects.Add(new DealDamageEffect(m_CastLayer, m_Damage));
-        m_OnPlayEffects.Add(new AddCardEffect(m_CastLayer, m_CardToAdd, AddCardEffect.PileToAdd.Draw));
-        m_OnPlayEffects.Add(new ExaustCardEffect(m_CastLayer));
+        m_OnPlayEffects.Add(new AddCardEffect(m_CastLayer, m_CardToAdd, PlayerDeck.DeckPiles.Draw));
+    }
+
+    protected override PlayerDeck.DeckPiles GetDestination()
+    {
+        return PlayerDeck.DeckPiles.Exaust;
     }
 
 }

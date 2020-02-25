@@ -76,12 +76,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerEntityPrefab: {fileID: 1844081199359007913, guid: 26076549b072d4c479299f12f98c6731,
     type: 3}
-  _damageMarkerPrefab: {fileID: 7735743414939126752, guid: f416fe245b19cfc469a37591a0a4c669,
+  _damageMarkerPrefab: {fileID: 704216401345607837, guid: 031f8c49dd241ae46ba98457801c91ef,
     type: 3}
   _damageMarkerParent: {fileID: 961465792}
   _entitiesLayerMask:
     serializedVersion: 2
     m_Bits: 33024
-  _cardTemplate: {fileID: 1577873094432798953, guid: ab81cb96a06c5f34eafab377bc51aabc,
+  _cardTemplate: {fileID: 1577873094432798953, guid: 48644c37fb4904b458c09fcd5b3ef2df,
     type: 3}
   _cardParent: {fileID: 0}

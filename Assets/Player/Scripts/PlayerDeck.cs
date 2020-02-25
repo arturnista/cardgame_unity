@@ -5,32 +5,46 @@ using UnityEngine;
 public class PlayerDeck : MonoBehaviour
 {
     
+    [SerializeField] private int _handCards = 5;
     [SerializeField] private CardDeck _deck = default;
 
-    private List<BaseCard> m_Draw;
-    public List<BaseCard> Draw { get => m_Draw; }
+    public enum DeckPiles
+    {
+        Hand,
+        Discard,
+        Draw,
+        Exaust
+    }
+
+    private List<BaseCard> m_DrawPile;
+    public List<BaseCard> DrawPile { get => m_DrawPile; }
     
     private List<BaseCard> m_Hand;
     public List<BaseCard> Hand { get => m_Hand; }
     
-    private List<BaseCard> m_Discard;
-    public List<BaseCard> Discard { get => m_Discard; }
+    private List<BaseCard> m_DiscardPile;
+    public List<BaseCard> DiscardPile { get => m_DiscardPile; }
     
-    private List<BaseCard> m_Exaust;
-    public List<BaseCard> Exaust { get => m_Exaust; }
+    private List<BaseCard> m_ExaustPile;
+    public List<BaseCard> ExaustPile { get => m_ExaustPile; }
 
     private GameController _gameController;
-    private PlayerHealth _playerHealth;
+    private PlayerEntity _playerEntity;
 
     void Awake()
     {
         _gameController = GameObject.FindObjectOfType<GameController>();
-        _playerHealth = GetComponent<PlayerHealth>();
+        _playerEntity = GetComponent<PlayerEntity>();
 
-        m_Draw = new List<BaseCard>();
+        m_DrawPile = new List<BaseCard>();
         m_Hand = new List<BaseCard>();
-        m_Exaust = new List<BaseCard>();
-        m_Discard = new List<BaseCard>(_deck.Cards);    
+        m_ExaustPile = new List<BaseCard>();
+        m_DiscardPile = new List<BaseCard>(_deck.Cards);    
+
+        foreach (var card in _deck.Cards)
+        {
+            card.Construct(_playerEntity);
+        }
     }
 
     public void StartGame()
@@ -46,65 +60,93 @@ public class PlayerDeck : MonoBehaviour
         } else if (Input.GetKeyDown(KeyCode.D))
         {
             ShowDiscardPile();
+        } else if (Input.GetKeyDown(KeyCode.X))
+        {
+            ShowExaustPile();
         }
 
     }
 
     public void ShowDrawPile()
     {
-        List<BaseCard> drawShuffled = new List<BaseCard>(m_Draw);
+        List<BaseCard> drawShuffled = new List<BaseCard>(m_DrawPile);
         drawShuffled.Shuffle();
-        UICardList.Main.Show("Draw pile", drawShuffled, KeyCode.A);
+        UICardList.Main.Show("Draw pile", drawShuffled);
     }
 
     public void ShowDiscardPile()
     {
-        UICardList.Main.Show("Discard pile", m_Discard, KeyCode.D);
+        UICardList.Main.Show("Discard pile", m_DiscardPile);
+    }
+
+    public void ShowExaustPile()
+    {
+        UICardList.Main.Show("Exaust pile", m_ExaustPile);
     }
 
     public void PlayCard(int index, Vector3 point)
     {
         BaseCard card = m_Hand[index];
-        if (card.ManaCost > _playerHealth.ManaAmount)
+        if (card.ManaCost > _playerEntity.PlayerHealth.ManaAmount)
         {
             DebugText.ShowText("NOT ENOUGH MANA");
             return;
         }
+
+        int distance = Mathf.RoundToInt(Vector3.Distance(point, transform.position));
+        if (distance > card.CastRange)
+        {
+            DebugText.ShowText("MAX RANGE");
+            return;
+        }
         
-        _playerHealth.ManaAmount -= card.ManaCost;
+        _playerEntity.PlayerHealth.ManaAmount -= card.ManaCost;
 
-        card.Play(point, transform.position);
+        DeckPiles cardFinalDestination = card.Play(point, transform.position);
 
-        m_Hand.RemoveAt(index);
-        if (card.ExaustOnPlay)
-        {
-            m_Exaust.Add(card);
-        }
-        else
-        {
-            m_Discard.Add(card);
-        }
+        MoveCard(card, cardFinalDestination);
 
-        _gameController.DrawCards();
+        _gameController.UIUpdateCards();
     }
 
-    public void ShuffleHand()
+    public void MoveCard(BaseCard card, DeckPiles deckPile)
     {
-        while (m_Discard.Count > 0)
+        m_Hand.Remove(card);
+
+        switch (deckPile)
         {
-            int rand = Random.Range(0, m_Discard.Count);
-            m_Draw.Add(m_Discard[rand]);
-            m_Discard.RemoveAt(rand);
+            case DeckPiles.Hand:
+                m_Hand.Add(card);
+                break;
+            case DeckPiles.Discard:
+                m_DiscardPile.Add(card);
+                break;
+            case DeckPiles.Draw:
+                m_DrawPile.Add(card);
+                break;
+            case DeckPiles.Exaust:
+                m_ExaustPile.Add(card);
+                break;
+        }
+    }
+
+    void ShuffleDiscardIntoDraw()
+    {
+        while (m_DiscardPile.Count > 0)
+        {
+            int rand = Random.Range(0, m_DiscardPile.Count);
+            m_DrawPile.Add(m_DiscardPile[rand]);
+            m_DiscardPile.RemoveAt(rand);
         }
     }
 
     public void StartTurn()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < _handCards; i++)
         {
-            if (m_Draw.Count == 0) ShuffleHand();
-            m_Hand.Add(m_Draw[0]);
-            m_Draw.RemoveAt(0);
+            if (m_DrawPile.Count == 0) ShuffleDiscardIntoDraw();
+            m_Hand.Add(m_DrawPile[0]);
+            m_DrawPile.RemoveAt(0);
         }
     }
 
@@ -112,24 +154,27 @@ public class PlayerDeck : MonoBehaviour
     {
         while(m_Hand.Count > 0)
         {
-            m_Discard.Add(m_Hand[0]);
+            m_DiscardPile.Add(m_Hand[0]);
             m_Hand.RemoveAt(0);
         }
     }
 
-    public void AddCardToHand(BaseCard card)
+    public void AddCardToHand(string cardId)
     {
+        BaseCard card = DI.Get<CardDatabase>().GetNewCard(cardId);
         m_Hand.Add(card);
     }
 
-    public void AddCardToDraw(BaseCard card)
+    public void AddCardToDraw(string cardId)
     {
-        m_Draw.Insert(Random.Range(0, m_Draw.Count), card);
+        BaseCard card = DI.Get<CardDatabase>().GetNewCard(cardId);
+        m_DrawPile.Insert(Random.Range(0, m_DrawPile.Count), card);
     }
 
-    public void AddCardToDicard(BaseCard card)
+    public void AddCardToDiscard(string cardId)
     {
-        m_Discard.Add(card);
+        BaseCard card = DI.Get<CardDatabase>().GetNewCard(cardId);
+        m_DiscardPile.Add(card);
     }
 
 }

@@ -91,6 +91,10 @@ public class GameController : MonoBehaviour
             Vector3 mousePosition = _camera.ScreenToWorldPoint(Input.mousePosition);
             SelectPoint(_mapController.WorldToCell(mousePosition));
         }
+        else if(Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            CancelAction();
+        }
     }
 
     void LateUpdate()
@@ -106,13 +110,13 @@ public class GameController : MonoBehaviour
     void StartPlayerTurn()
     {
         _playerEntity.StartTurn();
-        DrawCards();
+        UIUpdateCards();
     }
 
     public void EndPlayerTurn()
     {
         _playerEntity.EndTurn();
-        DrawCards();
+        UIUpdateCards();
 
         StartEnemiesTurn();
     }
@@ -185,13 +189,22 @@ public class GameController : MonoBehaviour
 
     public void DeselectCard()
     {
-        m_SelectedCard.Deselect();
-        m_SelectedCard = null;
+        if (m_SelectedCard != null)
+        {
+            m_SelectedCard.Deselect();
+            m_SelectedCard = null;
+        }
 
         HideDamageArea();
     }
 
-    public void DrawCards()
+    public void CancelAction()
+    {
+        DeselectCard();
+        _isMoving = false;
+    }
+
+    public void UIUpdateCards()
     {
         foreach (Transform child in _cardParent.transform)
         {

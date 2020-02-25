@@ -12,15 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85eb336ea7a5d8e45a93fd7691602dce, type: 3}
   m_Name: RagnarokCard
   m_EditorClassIdentifier: 
-  m_ID: card:ragnarok
+  m_ID: card:Ragnarok
   m_Title: Ragnarok
   m_Icon: {fileID: 21300000, guid: e5a858f3f6db60b4b8e1564f832d740d, type: 3}
   m_ManaCost: 5
   m_CastLayer:
   - {fileID: 11400000, guid: 9f660a33445e6d3458da016eadc27b88, type: 2}
-  m_CastRange: 5
+  m_CastRange: 100
   m_CastArea: {fileID: 11400000, guid: 113f10d4c3a378c41b526c2d9f9e6ccb, type: 2}
   m_CastAreaSize: 2
-  m_ExaustOnPlay: 0
   m_Damage: 100
-  m_CardToAdd: {fileID: 11400000, guid: 5eba21600cb63944fbcaa4577f7a996d, type: 2}
+  m_CardToAdd: card:Onslaught

@@ -16,7 +16,6 @@ public class UICardList : MonoBehaviour
     [SerializeField] private Canvas _contentCanvas = default;
     [SerializeField] private Canvas _emptyContentCanvas = default;
 
-    private KeyCode _backHotkey;
     private Canvas _canvas;
     private GraphicRaycaster _graphicRaycaster;
 
@@ -30,7 +29,7 @@ public class UICardList : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(_backHotkey))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             HandleBack();
         }
@@ -41,9 +40,8 @@ public class UICardList : MonoBehaviour
         Hide();
     }
 
-    public void Show(string title, List<BaseCard> cards, KeyCode backHotkey)
+    public void Show(string title, List<BaseCard> cards)
     {
-        _backHotkey = backHotkey;
         _titleText.text = title;
         
         Display();

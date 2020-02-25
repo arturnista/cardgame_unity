@@ -124,11 +124,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardListCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 5324013638761926789, guid: 776802eda48c99d4aa5172d2104b3da5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5324013638761926842, guid: 776802eda48c99d4aa5172d2104b3da5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5061,12 +5056,6 @@ PrefabInstance:
       propertyPath: _cardParent
       value: 
       objectReference: {fileID: 1772136696}
-    - target: {fileID: 8404482229103891810, guid: e1f4b76e2911bb84da0a592452773751,
-        type: 3}
-      propertyPath: _cardTemplate
-      value: 
-      objectReference: {fileID: 1577873094432798953, guid: 48644c37fb4904b458c09fcd5b3ef2df,
-        type: 3}
     - target: {fileID: 8405413408175509823, guid: e1f4b76e2911bb84da0a592452773751,
         type: 3}
       propertyPath: m_LocalPosition.x
