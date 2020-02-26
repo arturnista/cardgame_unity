@@ -11,6 +11,7 @@ public class EnemiesController : MonoBehaviour
     [SerializeField] private Encounter _encounter = default;
     [SerializeField] private List<Transform> _spawnPositions = default;
     
+    private EncounterManager _encounterManager;
     private GameController _gameController;
 
     private GameObject _enemiesParent;
@@ -22,6 +23,12 @@ public class EnemiesController : MonoBehaviour
     {
         DI.Set<EnemiesController>(this);
         _gameController = GameObject.FindObjectOfType<GameController>();
+
+        _encounterManager = DI.Get<EncounterManager>();
+        if (_encounterManager != null && _encounterManager.LoadedEncounter != null)
+        {
+            _encounter = _encounterManager.LoadedEncounter;
+        }
     }
 
     public void CreateEnemies()

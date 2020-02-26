@@ -6,6 +6,10 @@ using UnityEngine;
 public class Encounter : ScriptableObject
 {
     
-    public List<GameObject> EnemiesPrefabs;
+    [SerializeField] private string m_ID = "encounter:";
+    public string ID { get => m_ID; }
+
+    [SerializeField] private List<GameObject> m_EnemiesPrefabs = default;
+    public List<GameObject> EnemiesPrefabs { get => m_EnemiesPrefabs; }
 
 }

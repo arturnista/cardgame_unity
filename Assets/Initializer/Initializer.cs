@@ -8,6 +8,7 @@ public class Initializer
 
     private static string CARDS_RESOURCE_PATH = @"Cards/Cards";
     private static string CARD_DECKS_RESOURCE_PATH = @"Cards/Decks";
+    private static string ENCOUNTERS_RESOURCE_PATH = @"Enemies/Encounters";
     
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void OnBeforeSceneLoad()
@@ -18,6 +19,8 @@ public class Initializer
         LoadCards();
 
         LoadCardDecks();
+
+        LoadEncounters();
 
         Debug.Log("== Finished initializing game data!");
 
@@ -44,6 +47,18 @@ public class Initializer
             CardDeck deck = deckGeneric as CardDeck;
             deck.Prepare();
         }
+        Debug.Log("=== Finished LoadCardDecks");
+    }
+
+    static void LoadEncounters()
+    {
+        EncounterManager encounterManager = new EncounterManager();
+        foreach (var encounterGeneric in Resources.LoadAll(ENCOUNTERS_RESOURCE_PATH, typeof(Encounter)))
+        {
+            Encounter encounter = encounterGeneric as Encounter;
+            encounterManager.AddEncounter(encounter);
+        }
+        DI.Set<EncounterManager>(encounterManager);
         Debug.Log("=== Finished LoadCardDecks");
     }
 

@@ -272,6 +272,13 @@ public class GameController : MonoBehaviour
     public void WinGame()
     {
         _winCanvas.SetActive(true);
+        StartCoroutine(WinCoroutine());
+    }
+
+    IEnumerator WinCoroutine()
+    {
+        yield return new WaitForSeconds(5f);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Map");
     }
 
     public void DefeatGame()

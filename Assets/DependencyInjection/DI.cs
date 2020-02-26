@@ -18,7 +18,8 @@ public class DI
 		if (depedencies == null) depedencies = new Dictionary<Type, object>();
 		if (depedencies.ContainsKey(typeof(T)))
 		{
-			return (T) depedencies[typeof(T)];
+			Remove<T>();
+			// return (T) depedencies[typeof(T)];
 		}
 
 		depedencies.Add(typeof(T), dep);

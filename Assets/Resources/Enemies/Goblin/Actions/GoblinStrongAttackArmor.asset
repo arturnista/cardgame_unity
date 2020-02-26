@@ -18,7 +18,7 @@ MonoBehaviour:
   m_AreaOfEffectValue: 0
   m_CastLayer:
   - {fileID: 11400000, guid: 665eb354e9424394fa36286045d057f9, type: 2}
-  m_IntentIcon: {fileID: 21300000, guid: 562e7ab7c70e45a488f74fa3b2feb571, type: 3}
+  m_IntentIcon: {fileID: 21300000, guid: b45705a84570ceb48a5980f08fbf50e6, type: 3}
   m_IntentIconColor: {r: 1, g: 1, b: 1, a: 1}
   _damage: 10
   _armor: 10
