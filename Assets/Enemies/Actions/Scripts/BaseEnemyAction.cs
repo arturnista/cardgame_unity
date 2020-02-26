@@ -5,6 +5,13 @@ using UnityEngine;
 public abstract class BaseEnemyAction : ScriptableObject
 {
 
+    [SerializeField] protected string m_ID = "enemyAction:";
+    public string ID { get => m_ID; }
+
+    [SerializeField] protected string m_Title = "";
+    public string Title { get => m_Title; }
+    
+    [Header("Area of effect")]
     [SerializeField] protected BaseAreaOfEffect m_AreaOfEffect;
     public BaseAreaOfEffect AreaOfEffect { get => m_AreaOfEffect; }
     
@@ -36,21 +43,27 @@ public abstract class BaseEnemyAction : ScriptableObject
         _castPositions = GetAreaOfEffect(_playerEntity, _self);
     }
 
-    public virtual void Execute()
+    public virtual bool Execute()
     {
+        bool wasSuccessfull = false;
+        
         GameController gameController = DI.Get<GameController>();
         foreach (var target in gameController.GetEntitiesAtPositions(_castPositions))
         {
             EntityTypeHolder typeHolder = target.GetComponent<EntityTypeHolder>();
             if (typeHolder.IsType(m_CastLayer))
             {
-                ExecutePerTarget(target);
+                if (ExecutePerTarget(target))
+                {
+                    wasSuccessfull = true;
+                }
             }
         }
 
+        return wasSuccessfull;
     }
 
-    public abstract void ExecutePerTarget(GameObject entity);
+    public abstract bool ExecutePerTarget(GameObject entity);
 
     public virtual EnemyIntent GetIntent()
     {

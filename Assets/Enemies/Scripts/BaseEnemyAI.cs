@@ -9,12 +9,16 @@ public abstract class BaseEnemyAI : MonoBehaviour
 
     protected BaseEnemyAction m_NextAction;
     public BaseEnemyAction NextAction { get => m_NextAction; }
+    
+    protected BaseEnemyAction m_LastAction;
 
     protected Entity _entity;
     protected EnemyHealth _enemyHealth;
 
     protected PlayerEntity _playerEntity;
     protected EnemiesController _enemiesController;
+
+    protected bool _lastActionWasSuccessfull;
 
     protected virtual void Awake()
     {
@@ -36,12 +40,14 @@ public abstract class BaseEnemyAI : MonoBehaviour
 
     protected abstract BaseEnemyAction DefineNextAction();
 
-    public void Execute()
+    public virtual bool Execute()
     {
-        if (_enemyHealth.IsDead) return;
+        if (_enemyHealth.IsDead) return false;
         
-        m_NextAction.Execute();
+        bool wasSuccessfull = m_NextAction.Execute();
+        m_LastAction = m_NextAction;
         m_NextAction = null;
+        return wasSuccessfull;
     }
 
 }

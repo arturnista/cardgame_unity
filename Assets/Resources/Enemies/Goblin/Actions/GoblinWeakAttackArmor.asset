@@ -9,15 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ccb818a3eede7e4997b531d4a862625, type: 3}
-  m_Name: GoblinRangeAttack
+  m_Script: {fileID: 11500000, guid: 926e6a694dbec3944b39af2a78b076f4, type: 3}
+  m_Name: GoblinWeakAttackArmor
   m_EditorClassIdentifier: 
-  m_ID: enemyAction:ThrowRock
-  m_Title: Throw Rock
-  m_AreaOfEffect: {fileID: 11400000, guid: 76d82355041892547b90b3c8c5af17dc, type: 2}
+  m_ID: enemyAction:ShieldAttack
+  m_Title: Shield Attack
+  m_AreaOfEffect: {fileID: 11400000, guid: 113f10d4c3a378c41b526c2d9f9e6ccb, type: 2}
   m_AreaOfEffectValue: 0
   m_CastLayer:
   - {fileID: 11400000, guid: 665eb354e9424394fa36286045d057f9, type: 2}
-  m_IntentIcon: {fileID: 21300000, guid: 025c4c323a591dc45bfec07061662c22, type: 3}
+  m_IntentIcon: {fileID: 21300000, guid: 562e7ab7c70e45a488f74fa3b2feb571, type: 3}
   m_IntentIconColor: {r: 1, g: 1, b: 1, a: 1}
-  _damage: 7
+  _damage: 5
+  _armor: 5

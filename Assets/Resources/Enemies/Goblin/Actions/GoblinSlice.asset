@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ccb818a3eede7e4997b531d4a862625, type: 3}
   m_Name: GoblinSlice
   m_EditorClassIdentifier: 
+  m_ID: enemyAction:Slice
+  m_Title: Slice
   m_AreaOfEffect: {fileID: 11400000, guid: c7464549803ec7940856cf93318783f6, type: 2}
   m_AreaOfEffectValue: 2
   m_CastLayer:

@@ -37,6 +37,8 @@ public class GameController : MonoBehaviour
     [Header("UI")]
     [SerializeField] private GameObject _cardTemplate = default;
     [SerializeField] private GameObject _cardParent = default;
+    [SerializeField] private GameObject _winCanvas = default;
+    [SerializeField] private GameObject _defeatCanvas = default;
 
     private PlayerEntity _playerEntity;
     private EnemiesController _enemiesController;
@@ -57,18 +59,32 @@ public class GameController : MonoBehaviour
         
         _playerEntity = Instantiate(_playerEntityPrefab, new Vector3(.5f, -.5f), Quaternion.identity).GetComponent<PlayerEntity>();
         _camera = Camera.main;
+        
+        _winCanvas.SetActive(false);
+        _defeatCanvas.SetActive(false);
     }
 
     void Start()
     {
         _enemiesController = DI.Get<EnemiesController>();
         _mapController = DI.Get<MapController>();
+
+        _playerEntity.PlayerHealth.OnDeath += HandlePlayerDeath;
+        _enemiesController.OnDefeatAllEnemies += HandleDefeatAllEnemies;
         
         StartGame();
     }
 
+    void OnDisable()
+    {
+        _playerEntity.PlayerHealth.OnDeath -= HandlePlayerDeath;
+        _enemiesController.OnDefeatAllEnemies -= HandleDefeatAllEnemies;
+    }
+
     void StartGame()
     {
+        _enemiesController.CreateEnemies();
+
         _playerEntity.StartGame();
         _enemiesController.StartGame();
         EndEnemiesTurn();
@@ -103,8 +119,18 @@ public class GameController : MonoBehaviour
 
         if (SelectedCard != null)
         {
-            DrawDamageArea();
+            UIUpdateDamageArea();
         }
+    }
+
+    void HandleDefeatAllEnemies()
+    {
+        WinGame();
+    }
+
+    void HandlePlayerDeath(GameObject enemy)
+    {
+        DefeatGame();
     }
 
     void StartPlayerTurn()
@@ -162,7 +188,7 @@ public class GameController : MonoBehaviour
         m_SelectedCard = new CardSelection(index, card, cardView);
 
         _selectedCardThisFrame = true;
-        DrawDamageArea(true);
+        UIUpdateDamageArea(true);
     }
 
     public void SelectPoint(Vector3 point)
@@ -218,7 +244,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    void DrawDamageArea(bool force = false)
+    void UIUpdateDamageArea(bool force = false)
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition = _mapController.WorldToCell(mousePosition);
@@ -241,6 +267,16 @@ public class GameController : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+    }
+
+    public void WinGame()
+    {
+        _winCanvas.SetActive(true);
+    }
+
+    public void DefeatGame()
+    {
+        _defeatCanvas.SetActive(true);
     }
 
     public List<GameObject> GetEntitiesAtPositions(List<Vector3> positions)

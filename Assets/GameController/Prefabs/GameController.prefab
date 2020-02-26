@@ -85,3 +85,5 @@ MonoBehaviour:
   _cardTemplate: {fileID: 1577873094432798953, guid: 48644c37fb4904b458c09fcd5b3ef2df,
     type: 3}
   _cardParent: {fileID: 0}
+  _winCanvas: {fileID: 0}
+  _defeatCanvas: {fileID: 0}

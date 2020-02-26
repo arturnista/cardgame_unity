@@ -9,10 +9,11 @@ public class EnemyArmorAction : BaseEnemyAction
     [Header("Armor")]
     [SerializeField] private int _armor = default;
 
-    public override void ExecutePerTarget(GameObject target)
+    public override bool ExecutePerTarget(GameObject target)
     {
         IHealth targetHealth = target.GetComponent<IHealth>();
         targetHealth.Armor += _armor;
+        return true;
     }
 
 }

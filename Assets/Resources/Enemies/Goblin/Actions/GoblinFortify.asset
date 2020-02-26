@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e10ed9f761149b4a98ceabd0355f9a4, type: 3}
   m_Name: GoblinFortify
   m_EditorClassIdentifier: 
+  m_ID: enemyAction:Fortify
+  m_Title: Fortify
   m_AreaOfEffect: {fileID: 11400000, guid: c7464549803ec7940856cf93318783f6, type: 2}
   m_AreaOfEffectValue: 0
   m_CastLayer:

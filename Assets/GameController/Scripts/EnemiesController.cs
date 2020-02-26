@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemiesController : MonoBehaviour
 {
+
+    public delegate void DefeatAllEnemiesHandler();
+    public DefeatAllEnemiesHandler OnDefeatAllEnemies;
     
     [SerializeField] private Encounter _encounter = default;
     [SerializeField] private List<Transform> _spawnPositions = default;
@@ -21,7 +24,7 @@ public class EnemiesController : MonoBehaviour
         _gameController = GameObject.FindObjectOfType<GameController>();
     }
 
-    public void StartGame()
+    public void CreateEnemies()
     {
         m_Enemies = new List<GameObject>();
         
@@ -34,12 +37,22 @@ public class EnemiesController : MonoBehaviour
 
             createdEnemy.GetComponent<EnemyHealth>().OnDeath += HandleEnemyDeath;
         }
-        
+    }
+
+    public void StartGame()
+    {
     }
 
     void HandleEnemyDeath(GameObject enemy)
     {
         m_Enemies.Remove(enemy);
+        if (m_Enemies.Count == 0)
+        {
+            if (OnDefeatAllEnemies != null)
+            {
+                OnDefeatAllEnemies();
+            }
+        }
     }
 
     public GameObject GetEnemy(int index)
