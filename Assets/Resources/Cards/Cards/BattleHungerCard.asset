@@ -16,9 +16,10 @@ MonoBehaviour:
   m_Title: 
   m_Icon: {fileID: 21300000, guid: c7eb68ffe91e42643bc4434a943577ab, type: 3}
   m_ManaCost: 1
-  m_CastLayer: []
-  m_CastRange: 0
-  m_CastArea: {fileID: 0}
+  m_CastLayer:
+  - {fileID: 11400000, guid: 665eb354e9424394fa36286045d057f9, type: 2}
+  m_CastRange: 100
+  m_CastArea: {fileID: 11400000, guid: c7464549803ec7940856cf93318783f6, type: 2}
   m_CastAreaSize: 0
   m_SelfDamage: 10
   m_ManaGain: 2

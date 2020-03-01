@@ -465,7 +465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e564e1803e1b54f90ee888c93ce26a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _encounterID: encounter:GoblinGang
+  _encounterID: encounter:GoblinBoss
 --- !u!1 &820678234
 GameObject:
   m_ObjectHideFlags: 0

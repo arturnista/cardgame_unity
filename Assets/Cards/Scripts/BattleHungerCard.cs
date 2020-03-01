@@ -14,6 +14,8 @@ public class BattleHungerCard : BaseCard
 
     public override void Initialize()
     {
+        base.Initialize();
+        
         m_OnPlayEffects = new List<BaseCardEffect>();
         m_OnPlayEffects.Add(new SelfDamageEffect(m_CastLayer, m_SelfDamage));
         m_OnPlayEffects.Add(new AddManaEffect(m_CastLayer, m_ManaGain));

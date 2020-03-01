@@ -800,7 +800,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1735805a45988cf43be61c12ac8fc7b1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 34dcc281e487bd544bdc9fa4f3b63eda, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1044,7 +1044,7 @@ GameObject:
   - component: {fileID: 2054141390184555462}
   - component: {fileID: 8111733277275277981}
   m_Layer: 8
-  m_Name: GoblinSmall
+  m_Name: BlueGoblinSmall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
