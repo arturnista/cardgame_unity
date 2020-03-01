@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c85d5b6152388e74696add3dd2618d4b, type: 3}
+  m_Name: BattleHungerCard
+  m_EditorClassIdentifier: 
+  m_ID: card:BattleHunger
+  m_Title: 
+  m_Icon: {fileID: 21300000, guid: c7eb68ffe91e42643bc4434a943577ab, type: 3}
+  m_ManaCost: 1
+  m_CastLayer: []
+  m_CastRange: 0
+  m_CastArea: {fileID: 0}
+  m_CastAreaSize: 0
+  m_SelfDamage: 10
+  m_ManaGain: 2
