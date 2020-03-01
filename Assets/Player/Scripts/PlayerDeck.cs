@@ -40,11 +40,6 @@ public class PlayerDeck : MonoBehaviour
         m_Hand = new List<BaseCard>();
         m_ExaustPile = new List<BaseCard>();
         m_DiscardPile = new List<BaseCard>(_deck.Cards);    
-
-        foreach (var card in _deck.Cards)
-        {
-            card.Construct(_playerEntity);
-        }
     }
 
     public void StartGame()
@@ -102,9 +97,8 @@ public class PlayerDeck : MonoBehaviour
         
         _playerEntity.PlayerHealth.ManaAmount -= card.ManaCost;
 
-        DeckPiles cardFinalDestination = card.Play(point, transform.position);
-
-        MoveCard(card, cardFinalDestination);
+        card.Play(point, transform.position);
+        card.PostPlay(_playerEntity);
 
         _gameController.UIUpdateCards();
     }
@@ -152,11 +146,16 @@ public class PlayerDeck : MonoBehaviour
 
     public void EndTurn()
     {
-        while(m_Hand.Count > 0)
+        for (int i = m_Hand.Count - 1; i >= 0 ; i--)
         {
-            m_DiscardPile.Add(m_Hand[0]);
-            m_Hand.RemoveAt(0);
+            m_Hand[i].EndTurn(_playerEntity);
         }
+
+        // while(m_Hand.Count > 0)
+        // {
+        //     m_DiscardPile.Add(m_Hand[0]);
+        //     m_Hand.RemoveAt(0);
+        // }
     }
 
     public void AddCardToHand(string cardId)

@@ -14,14 +14,14 @@ public class SkullSplitterCard : BaseCard
 
     public override void Initialize()
     {
+        base.Initialize();
+        
         m_OnPlayEffects = new List<BaseCardEffect>();
         m_OnPlayEffects.Add(new DealDamageEffect(m_CastLayer, m_Damage));
         m_OnPlayEffects.Add(new AddCardEffect(m_CastLayer, m_CardToAdd, PlayerDeck.DeckPiles.Draw));
-    }
-
-    protected override PlayerDeck.DeckPiles GetDestination()
-    {
-        return PlayerDeck.DeckPiles.Exaust;
+        
+        m_OnPostPlayEffects.Clear();
+        m_OnPostPlayEffects.Add(new ExaustCardEffect(m_CastLayer));
     }
 
 }

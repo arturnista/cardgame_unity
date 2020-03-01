@@ -37,6 +37,11 @@ public abstract class BaseCardEffect
 
     }
 
+    public virtual void Execute(BaseCard card, PlayerEntity playerEntity)
+    {
+        
+    }
+
     public abstract string GetDescription();
 
 }

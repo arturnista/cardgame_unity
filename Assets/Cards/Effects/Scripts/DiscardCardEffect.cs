@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExaustCardEffect : BaseCardEffect
+public class DiscardCardEffect : BaseCardEffect
 {
 
-    public ExaustCardEffect(List<EntityType> castLayer) : base(castLayer)
+    public DiscardCardEffect(List<EntityType> castLayer) : base(castLayer)
     {
     }
 
@@ -15,7 +15,7 @@ public class ExaustCardEffect : BaseCardEffect
 
     public override void Execute(BaseCard card, PlayerEntity playerEntity)
     {
-        playerEntity.PlayerDeck.MoveCard(card, PlayerDeck.DeckPiles.Exaust);
+        playerEntity.PlayerDeck.MoveCard(card, PlayerDeck.DeckPiles.Discard);
     }
 
     public override string GetDescription()

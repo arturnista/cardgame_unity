@@ -33,7 +33,11 @@ public abstract class BaseCard : ScriptableObject
     protected List<BaseCardEffect> m_OnPlayEffects = default;
     public List<BaseCardEffect> OnPlayEffects { get => m_OnPlayEffects; protected set => m_OnPlayEffects = value; }
 
-    protected PlayerEntity _playerEntity;
+    protected List<BaseCardEffect> m_OnPostPlayEffects = default;
+    public List<BaseCardEffect> OnPostPlayEffects { get => m_OnPostPlayEffects; protected set => m_OnPostPlayEffects = value; }
+
+    protected List<BaseCardEffect> m_OnEndTurnEffects = default;
+    public List<BaseCardEffect> OnEndTurnEffects { get => m_OnEndTurnEffects; protected set => m_OnEndTurnEffects = value; }
 
     public string Description {
         get 
@@ -43,60 +47,48 @@ public abstract class BaseCard : ScriptableObject
             {
                 description += item.GetDescription() + "\n";
             }
-
-            PlayerDeck.DeckPiles destination = GetDestination();
-            switch (destination)
-            {
-                case PlayerDeck.DeckPiles.Exaust:
-                    description += "Exaust";
-                    break;
-                case PlayerDeck.DeckPiles.Hand:
-                    description += "Move to hand";
-                    break;
-                case PlayerDeck.DeckPiles.Draw:
-                    description += "Move to draw pile";
-                    break;
-            }
-
             return description;
         }
     }
 
-    public void Construct(PlayerEntity playerEntity)
+    public virtual void Initialize()
     {
-        _playerEntity = playerEntity;
-    }
+        m_OnPlayEffects = new List<BaseCardEffect>();
+        m_OnPostPlayEffects = new List<BaseCardEffect>();
+        m_OnEndTurnEffects = new List<BaseCardEffect>();
 
-    public abstract void Initialize();
+        m_OnPostPlayEffects.Add(new DiscardCardEffect(m_CastLayer));
+        m_OnEndTurnEffects.Add(new DiscardCardEffect(m_CastLayer));
+    }
     
-    public PlayerDeck.DeckPiles Play(Vector3 point, Vector3 casterPosition)
+    public void Play(Vector3 point, Vector3 casterPosition)
     {
         List<Vector3> castPosition = GetAreaOfEffect(point, casterPosition);
         foreach (BaseCardEffect item in OnPlayEffects)
         {
             item.OnPlay(this, castPosition);
         }
-        return GetDestination();
     }
-
-    protected virtual PlayerDeck.DeckPiles GetDestination()
+    
+    public void PostPlay(PlayerEntity _playerEntity)
     {
-        return PlayerDeck.DeckPiles.Discard;
+        foreach (BaseCardEffect item in OnPostPlayEffects)
+        {
+            item.Execute(this, _playerEntity);
+        }
+    }
+    
+    public void EndTurn(PlayerEntity _playerEntity)
+    {
+        foreach (BaseCardEffect item in OnEndTurnEffects)
+        {
+            item.Execute(this, _playerEntity);
+        }
     }
 
     public List<Vector3> GetAreaOfEffect(Vector3 castPosition, Vector3 casterPosition)
     {
         return m_CastArea.GetAreaOfEffect(castPosition, casterPosition, m_CastAreaSize);
-    }
-
-    public void Discard()
-    {
-        _playerEntity.PlayerDeck.MoveCard(this, PlayerDeck.DeckPiles.Discard);   
-    }
-
-    public void Exaust()
-    {
-        _playerEntity.PlayerDeck.MoveCard(this, PlayerDeck.DeckPiles.Exaust);
     }
 
 }

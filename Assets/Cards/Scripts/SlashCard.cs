@@ -12,6 +12,8 @@ public class SlashCard : BaseCard
 
     public override void Initialize()
     {
+        base.Initialize();
+        
         m_OnPlayEffects = new List<BaseCardEffect>();
         m_OnPlayEffects.Add(new DealDamageEffect(m_CastLayer, m_Damage));
     }

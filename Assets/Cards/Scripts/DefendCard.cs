@@ -12,6 +12,8 @@ public class DefendCard : BaseCard
 
     public override void Initialize()
     {
+        base.Initialize();
+        
         m_OnPlayEffects = new List<BaseCardEffect>();
         m_OnPlayEffects.Add(new AddArmorEffect(m_CastLayer, m_Armor));
     }
